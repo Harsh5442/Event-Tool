@@ -1,0 +1,275 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.API\\EventTracker.Auth.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.API\\EventTracker.Auth.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.API\\EventTracker.Auth.API.csproj",
+        "projectName": "EventTracker.Auth.API",
+        "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.API\\EventTracker.Auth.API.csproj",
+        "packagesPath": "C:\\Users\\w199615\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\w199615\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Users\\w199615\\OneDrive - Worldline SA\\Documents\\UiPath\\UiPath Librarys": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Application\\EventTracker.Auth.Application.csproj": {
+                "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Application\\EventTracker.Auth.Application.csproj"
+              },
+              "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj": {
+                "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj"
+              },
+              "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Infrastructure\\EventTracker.Auth.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Infrastructure\\EventTracker.Auth.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.22, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.319/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Application\\EventTracker.Auth.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Application\\EventTracker.Auth.Application.csproj",
+        "projectName": "EventTracker.Auth.Application",
+        "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Application\\EventTracker.Auth.Application.csproj",
+        "packagesPath": "C:\\Users\\w199615\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\w199615\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Users\\w199615\\OneDrive - Worldline SA\\Documents\\UiPath\\UiPath Librarys": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj": {
+                "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.319/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj",
+        "projectName": "EventTracker.Auth.Domain",
+        "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj",
+        "packagesPath": "C:\\Users\\w199615\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\w199615\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Users\\w199615\\OneDrive - Worldline SA\\Documents\\UiPath\\UiPath Librarys": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.319/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Infrastructure\\EventTracker.Auth.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Infrastructure\\EventTracker.Auth.Infrastructure.csproj",
+        "projectName": "EventTracker.Auth.Infrastructure",
+        "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Infrastructure\\EventTracker.Auth.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\w199615\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\w199615\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Users\\w199615\\OneDrive - Worldline SA\\Documents\\UiPath\\UiPath Librarys": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj": {
+                "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.319/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

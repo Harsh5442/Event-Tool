@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "cpSBE3QcYm4mnBIa6q9GEpRDLXbfEA1ycmf63q6/H5A=",
+  "Source": "EventTracker.Auth.API",
+  "BasePath": "_content/EventTracker.Auth.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

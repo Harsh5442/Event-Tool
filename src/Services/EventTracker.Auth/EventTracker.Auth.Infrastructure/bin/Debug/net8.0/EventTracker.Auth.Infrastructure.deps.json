@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "EventTracker.Auth.Infrastructure/1.0.0": {
+        "dependencies": {
+          "EventTracker.Auth.Domain": "1.0.0"
+        },
+        "runtime": {
+          "EventTracker.Auth.Infrastructure.dll": {}
+        }
+      },
+      "EventTracker.Auth.Domain/1.0.0": {
+        "runtime": {
+          "EventTracker.Auth.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EventTracker.Auth.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EventTracker.Auth.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
