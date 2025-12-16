@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EventTracker.Auth.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4139e7d8c612d25085fa2e41cfb544901857cb64")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e04ecd2f90e6b1f87b299cf410dc99fc5993c60")]
 [assembly: System.Reflection.AssemblyProductAttribute("EventTracker.Auth.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EventTracker.Auth.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

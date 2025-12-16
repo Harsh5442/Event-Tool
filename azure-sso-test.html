@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure AD SSO Login Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .btn-azure {
+            background: #0078d4;
+            color: white;
+        }
+        
+        .btn-azure:hover {
+            background: #106ebe;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 120, 212, 0.3);
+        }
+        
+        .btn-logout {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-logout:hover {
+            background: #c82333;
+        }
+        
+        .btn-clear {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-clear:hover {
+            background: #5a6268;
+        }
+        
+        .info-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .info-section.show {
+            display: block;
+        }
+        
+        .info-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .info-item {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #667eea;
+            display: inline-block;
+            width: 120px;
+        }
+        
+        .info-value {
+            color: #333;
+            word-break: break-all;
+            font-family: monospace;
+            background: white;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        
+        .copy-btn:hover {
+            background: #218838;
+        }
+        
+        .status-message {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .status-message.show {
+            display: block;
+        }
+        
+        .status-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status-message.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Azure AD SSO Login Test</h1>
+        
+        <div id="statusMessage" class="status-message"></div>
+        
+        <div class="button-group">
+            <button class="btn-azure" onclick="loginWithAzureAD()">
+                🔑 Login with Azure AD
+            </button>
+            <button class="btn-logout" id="logoutBtn" onclick="logout()" style="display:none;">
+                🚪 Logout
+            </button>
+        </div>
+        
+        <button class="btn-clear" onclick="clearAllData()">Clear All Data</button>
+        
+        <!-- Azure AD Token Section -->
+        <div id="azureTokenSection" class="info-section">
+            <div class="info-title">Azure AD Token</div>
+            <div class="info-item">
+                <span class="info-label">Access Token:</span>
+                <button class="copy-btn" onclick="copyToClipboard('azureToken')">Copy</button>
+            </div>
+            <div id="azureToken" class="info-value"></div>
+            
+            <div class="info-item" style="margin-top: 15px;">
+                <span class="info-label">Token Claims:</span>
+            </div>
+            <div id="tokenClaims" style="font-size: 12px;"></div>
+        </div>
+        
+        <!-- API Token Section -->
+        <div id="apiTokenSection" class="info-section">
+            <div class="info-title">API Token (Internal JWT)</div>
+            <div class="info-item">
+                <span class="info-label">Access Token:</span>
+                <button class="copy-btn" onclick="copyToClipboard('apiToken')">Copy</button>
+            </div>
+            <div id="apiToken" class="info-value"></div>
+            
+            <div class="info-item" style="margin-top: 15px;">
+                <span class="info-label">Expires At:</span>
+                <span id="expiresAt" class="info-value"></span>
+            </div>
+        </div>
+        
+        <!-- User Profile Section -->
+        <div id="userProfileSection" class="info-section">
+            <div class="info-title">User Profile (from API)</div>
+            <div id="userProfile"></div>
+        </div>
+        
+        <!-- Test Endpoints Section -->
+        <div id="testEndpointsSection" class="info-section">
+            <div class="info-title">Test API Endpoints</div>
+            <div class="button-group">
+                <button class="btn-azure" onclick="callGetProfile()" style="flex: 1; padding: 8px;">
+                    Get Profile
+                </button>
+                <button class="btn-azure" onclick="callUpdateProfile()" style="flex: 1; padding: 8px;">
+                    Update Profile
+                </button>
+            </div>
+            <div id="apiResponse" style="font-size: 12px; background: white; padding: 10px; border-radius: 3px; margin-top: 10px; max-height: 200px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5085/api/auth';
+        
+        // Azure AD Configuration
+        const AZURE_AD_CONFIG = {
+            clientId: 'aae2d84a-dd2e-4710-8b00-7bf7cce23bdf',  // Replace with your Client ID
+            tenantId: '5d1e490a-8455-4ecb-b5a4-67f86e2f1d7d',  // Replace with your Tenant ID
+            redirectUri: 'http://localhost:3000/azure-sso-test.html',  // Change this to where you host the file
+            scopes: ['openid', 'profile', 'email']
+        };
+
+        // Initialize - Check if returning from Azure AD
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFromStorage();
+            checkForAzureAdToken();
+        });
+
+        // Load data from localStorage
+        function loadFromStorage() {
+            const azureToken = localStorage.getItem('azureToken');
+            const apiToken = localStorage.getItem('apiToken');
+            const userProfile = localStorage.getItem('userProfile');
+
+            if (azureToken) {
+                displayAzureToken(azureToken);
+            }
+            if (apiToken) {
+                displayApiToken(apiToken);
+                document.getElementById('logoutBtn').style.display = 'block';
+                document.getElementById('testEndpointsSection').classList.add('show');
+            }
+            if (userProfile) {
+                displayUserProfile(JSON.parse(userProfile));
+            }
+        }
+
+        // Check if returning from Azure AD with token
+        function checkForAzureAdToken() {
+            const hash = window.location.hash;
+            const params = new URLSearchParams(hash.substring(1));
+            const token = params.get('access_token');
+
+            if (token) {
+                showMessage('Token received from Azure AD!', 'success');
+                localStorage.setItem('azureToken', token);
+                displayAzureToken(token);
+                exchangeTokenWithAPI(token);
+                // Clear the URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+
+        // Redirect to Azure AD login
+        function loginWithAzureAD() {
+            const authUrl = `https://login.microsoftonline.com/${AZURE_AD_CONFIG.tenantId}/oauth2/v2.0/authorize?` +
+                `client_id=${AZURE_AD_CONFIG.clientId}&` +
+                `redirect_uri=${encodeURIComponent(AZURE_AD_CONFIG.redirectUri)}&` +
+                `response_type=token&` +
+                `scope=${encodeURIComponent(AZURE_AD_CONFIG.scopes.join(' '))}&` +
+                `response_mode=fragment`;
+
+            showMessage('Redirecting to Azure AD login...', 'info');
+            window.location.href = authUrl;
+        }
+
+        // Display Azure AD Token
+        function displayAzureToken(token) {
+            document.getElementById('azureTokenSection').classList.add('show');
+            document.getElementById('azureToken').textContent = token.substring(0, 50) + '...';
+            
+            // Decode and display token claims
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                let claimsHtml = '';
+                for (const [key, value] of Object.entries(payload)) {
+                    if (typeof value === 'object') {
+                        claimsHtml += `<div class="info-item"><span class="info-label">${key}:</span> <span class="info-value">${JSON.stringify(value)}</span></div>`;
+                    } else {
+                        claimsHtml += `<div class="info-item"><span class="info-label">${key}:</span> <span class="info-value">${value}</span></div>`;
+                    }
+                }
+                document.getElementById('tokenClaims').innerHTML = claimsHtml;
+            } catch (e) {
+                console.error('Error decoding token:', e);
+            }
+        }
+
+        // Exchange Azure AD token with our API
+        async function exchangeTokenWithAPI(azureToken) {
+            try {
+                showMessage('Exchanging token with API...', 'info');
+
+                const response = await fetch(`${API_BASE_URL}/azure-ad-callback`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        accessToken: azureToken
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('✅ Successfully logged in!', 'success');
+                    localStorage.setItem('apiToken', data.accessToken);
+                    displayApiToken(data.accessToken);
+                    
+                    // Display user profile
+                    const profile = {
+                        userId: data.userId,
+                        email: data.email,
+                        firstName: data.firstName,
+                        lastName: data.lastName
+                    };
+                    localStorage.setItem('userProfile', JSON.stringify(profile));
+                    displayUserProfile(profile);
+                    
+                    document.getElementById('logoutBtn').style.display = 'block';
+                    document.getElementById('testEndpointsSection').classList.add('show');
+                } else {
+                    showMessage(`❌ Login failed: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                showMessage(`❌ Error: ${error.message}`, 'error');
+                console.error('Exchange error:', error);
+            }
+        }
+
+        // Display API Token
+        function displayApiToken(token) {
+            document.getElementById('apiTokenSection').classList.add('show');
+            document.getElementById('apiToken').textContent = token.substring(0, 50) + '...';
+            document.getElementById('expiresAt').textContent = new Date(Date.now() + 3600000).toLocaleString();
+        }
+
+        // Display User Profile
+        function displayUserProfile(profile) {
+            document.getElementById('userProfileSection').classList.add('show');
+            let profileHtml = '';
+            for (const [key, value] of Object.entries(profile)) {
+                profileHtml += `<div class="info-item"><span class="info-label">${key}:</span> <span class="info-value">${value}</span></div>`;
+            }
+            document.getElementById('userProfile').innerHTML = profileHtml;
+        }
+
+        // Call API Get Profile
+        async function callGetProfile() {
+            const token = localStorage.getItem('apiToken');
+            if (!token) {
+                showMessage('❌ No token found. Please login first.', 'error');
+                return;
+            }
+
+            try {
+                showMessage('Calling GET /api/auth/profile...', 'info');
+
+                const response = await fetch(`${API_BASE_URL}/profile`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+                displayApiResponse(response.status, data);
+
+                if (response.ok) {
+                    showMessage('✅ Profile retrieved successfully!', 'success');
+                } else {
+                    showMessage(`❌ Error: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                showMessage(`❌ Error: ${error.message}`, 'error');
+                console.error('Error:', error);
+            }
+        }
+
+        // Call API Update Profile
+        async function callUpdateProfile() {
+            const token = localStorage.getItem('apiToken');
+            if (!token) {
+                showMessage('❌ No token found. Please login first.', 'error');
+                return;
+            }
+
+            try {
+                showMessage('Calling PUT /api/auth/profile...', 'info');
+
+                const response = await fetch(`${API_BASE_URL}/profile`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        firstName: 'Updated',
+                        lastName: 'Name',
+                        profilePictureUrl: 'https://example.com/pic.jpg'
+                    })
+                });
+
+                const data = await response.json();
+                displayApiResponse(response.status, data);
+
+                if (response.ok) {
+                    showMessage('✅ Profile updated successfully!', 'success');
+                    localStorage.setItem('userProfile', JSON.stringify(data));
+                    displayUserProfile(data);
+                } else {
+                    showMessage(`❌ Error: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                showMessage(`❌ Error: ${error.message}`, 'error');
+                console.error('Error:', error);
+            }
+        }
+
+        // Display API Response
+        function displayApiResponse(status, data) {
+            const responseEl = document.getElementById('apiResponse');
+            responseEl.innerHTML = `<strong>Status: ${status}</strong><pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+
+        // Logout
+        function logout() {
+            localStorage.removeItem('azureToken');
+            localStorage.removeItem('apiToken');
+            localStorage.removeItem('userProfile');
+            
+            document.getElementById('azureTokenSection').classList.remove('show');
+            document.getElementById('apiTokenSection').classList.remove('show');
+            document.getElementById('userProfileSection').classList.remove('show');
+            document.getElementById('testEndpointsSection').classList.remove('show');
+            document.getElementById('logoutBtn').style.display = 'none';
+            document.getElementById('apiResponse').innerHTML = '';
+            
+            showMessage('✅ Logged out successfully!', 'success');
+        }
+
+        // Clear all data
+        function clearAllData() {
+            logout();
+            showMessage('All data cleared!', 'info');
+        }
+
+        // Show message
+        function showMessage(message, type) {
+            const el = document.getElementById('statusMessage');
+            el.textContent = message;
+            el.className = `status-message show ${type}`;
+            
+            if (type !== 'info') {
+                setTimeout(() => {
+                    el.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Copy to clipboard
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

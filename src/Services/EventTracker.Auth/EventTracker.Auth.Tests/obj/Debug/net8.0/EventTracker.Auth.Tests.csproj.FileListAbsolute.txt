@@ -13,8 +13,13 @@ C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Servic
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\EventTracker.Auth.Tests.runtimeconfig.json
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\EventTracker.Auth.Tests.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\EventTracker.Auth.Tests.pdb
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
@@ -23,6 +28,7 @@ C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Servic
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.Identity.Client.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
@@ -43,6 +49,15 @@ C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Servic
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\NuGet.Frameworks.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Serilog.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Serilog.AspNetCore.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Serilog.Sinks.File.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Tests\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

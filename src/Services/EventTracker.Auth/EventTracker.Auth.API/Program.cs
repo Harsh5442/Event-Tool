@@ -1,44 +1,134 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Serilog;
+using System.Text;
+using EventTracker.Auth.API.Extensions;
+using EventTracker.Auth.Infrastructure.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.Console()
+    .WriteTo.File("logs/auth-service-.txt", rollingInterval: RollingInterval.Day)
+    .Enrich.FromLogContext()
+    .CreateLogger();
 
-var app = builder.Build();
+builder.Host.UseSerilog();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // Add services
+    builder.Services.AddControllers();
+
+    // Add application services
+    builder.Services.AddApplicationServices(builder.Configuration);
+
+    // // JWT Configuration
+    // var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+    // var secretKey = jwtSettings["SecretKey"];
+    // var key = Encoding.UTF8.GetBytes(secretKey);
+
+    // JWT Configuration
+    var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+    var secretKey = jwtSettings["SecretKey"];
+
+    // Validate secret key exists
+    if (string.IsNullOrEmpty(secretKey))
+    {
+    throw new InvalidOperationException("JWT SecretKey is not configured in appsettings.json");
+    }
+
+    var key = Encoding.UTF8.GetBytes(secretKey);
+
+    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = jwtSettings["Issuer"],
+                ValidAudience = jwtSettings["Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ClockSkew = TimeSpan.Zero
+            };
+        });
+
+    // Swagger/OpenAPI
+    builder.Services.AddSwaggerGen(options =>
+    {
+        options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+        {
+            Title = "Event Tracker - Auth Service API",
+            Version = "v1",
+            Description = "Authentication and User Management Service"
+        });
+
+        // Add JWT to Swagger
+        options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+        {
+            Name = "Authorization",
+            Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+            Scheme = "Bearer",
+            BearerFormat = "JWT",
+            In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+            Description = "JWT Authorization header using the Bearer scheme."
+        });
+
+        options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+        {
+            {
+                new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                {
+                    Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                    {
+                        Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[] { }
+            }
+        });
+    });
+
+    var app = builder.Build();
+
+    // Database migration
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<AuthDbContext>();
+        db.Database.EnsureCreated();
+    }
+
+    // Middleware
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Auth Service v1");
+            options.RoutePrefix = string.Empty;
+        });
+    }
+
+    app.UseHttpsRedirection();
+    app.UseCors("AllowAll");
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
+catch (Exception ex)
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    Log.CloseAndFlush();
 }

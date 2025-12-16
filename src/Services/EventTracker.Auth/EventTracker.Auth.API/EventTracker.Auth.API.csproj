@@ -12,9 +12,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" /> -->
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EventTracker.Auth.Application\EventTracker.Auth.Application.csproj" />
     <ProjectReference Include="..\EventTracker.Auth.Infrastructure\EventTracker.Auth.Infrastructure.csproj" />
     <ProjectReference Include="..\EventTracker.Auth.Domain\EventTracker.Auth.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" /> -->
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
   </ItemGroup>
 
 </Project>
