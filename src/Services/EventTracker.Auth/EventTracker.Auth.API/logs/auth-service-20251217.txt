@@ -1,0 +1,114 @@
+2025-12-17 09:38:08.824 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-12-17 09:38:09.335 +05:30 [DBG] Entity Framework Core 8.0.0 initialized 'AuthDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.0' with options: None
+2025-12-17 09:38:09.355 +05:30 [DBG] Creating DbConnection.
+2025-12-17 09:38:09.383 +05:30 [DBG] Created DbConnection. (26ms).
+2025-12-17 09:38:09.389 +05:30 [DBG] Opening connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-17 09:38:09.536 +05:30 [DBG] Opened connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-17 09:38:09.545 +05:30 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2025-12-17 09:38:09.552 +05:30 [DBG] Created DbCommand for 'ExecuteNonQuery' (6ms).
+2025-12-17 09:38:09.557 +05:30 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (14ms).
+2025-12-17 09:38:09.566 +05:30 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-17 09:38:09.591 +05:30 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-17 09:38:09.596 +05:30 [DBG] Closing connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-17 09:38:09.603 +05:30 [DBG] Closed connection to database 'EventTracker_Auth' on server '(local)' (4ms).
+2025-12-17 09:38:09.607 +05:30 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-12-17 09:38:09.609 +05:30 [DBG] Created DbCommand for 'ExecuteScalar' (1ms).
+2025-12-17 09:38:09.611 +05:30 [DBG] Initialized DbCommand for 'ExecuteScalar' (4ms).
+2025-12-17 09:38:09.613 +05:30 [DBG] Opening connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-17 09:38:09.615 +05:30 [DBG] Opened connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-17 09:38:09.617 +05:30 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-17 09:38:09.676 +05:30 [INF] Executed DbCommand (59ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-17 09:38:09.680 +05:30 [DBG] Closing connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-17 09:38:09.683 +05:30 [DBG] Closed connection to database 'EventTracker_Auth' on server '(local)' (3ms).
+2025-12-17 09:38:09.687 +05:30 [DBG] 'AuthDbContext' disposed.
+2025-12-17 09:38:09.691 +05:30 [DBG] Disposing connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-17 09:38:09.695 +05:30 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-12-17 09:38:09.742 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-12-17 09:38:09.788 +05:30 [DBG] Hosting starting
+2025-12-17 09:38:09.802 +05:30 [INF] User profile is available. Using 'C:\Users\w199615\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-17 09:38:09.813 +05:30 [DBG] Reading data from file 'C:\Users\w199615\AppData\Local\ASP.NET\DataProtection-Keys\key-0f9824b6-b006-44d6-96a0-7f00dad5e3f2.xml'.
+2025-12-17 09:38:09.821 +05:30 [DBG] Found key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2}.
+2025-12-17 09:38:09.831 +05:30 [DBG] Considering key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2} with expiration date 2026-03-11 06:25:41Z as default key.
+2025-12-17 09:38:09.836 +05:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-12-17 09:38:09.838 +05:30 [DBG] Decrypting secret element using Windows DPAPI.
+2025-12-17 09:38:09.840 +05:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-12-17 09:38:09.845 +05:30 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-12-17 09:38:09.847 +05:30 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-12-17 09:38:09.849 +05:30 [DBG] Using key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2} as the default key.
+2025-12-17 09:38:09.851 +05:30 [DBG] Key ring with default key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2} was loaded during application startup.
+2025-12-17 09:38:09.915 +05:30 [INF] Now listening on: http://localhost:5085
+2025-12-17 09:38:09.916 +05:30 [DBG] Loaded hosting startup assembly EventTracker.Auth.API
+2025-12-17 09:38:09.918 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-17 09:38:09.919 +05:30 [INF] Hosting environment: Development
+2025-12-17 09:38:09.920 +05:30 [INF] Content root path: C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.API
+2025-12-17 09:38:09.922 +05:30 [DBG] Hosting started
+2025-12-17 09:38:47.361 +05:30 [DBG] Connection id "0HNHT47T2ODGH" accepted.
+2025-12-17 09:38:47.367 +05:30 [DBG] Connection id "0HNHT47T2ODGH" started.
+2025-12-17 09:38:47.447 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5085/api/auth/azure-ad-login-url - null null
+2025-12-17 09:38:47.462 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-12-17 09:38:47.507 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-login-url'
+2025-12-17 09:38:47.517 +05:30 [DBG] Endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)' with route pattern 'api/Auth/azure-ad-login-url' is valid for the request path '/api/auth/azure-ad-login-url'
+2025-12-17 09:38:47.524 +05:30 [DBG] Request matched endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)'
+2025-12-17 09:38:47.560 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-17 09:38:47.564 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-12-17 09:38:47.569 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-17 09:38:47.574 +05:30 [INF] CORS policy execution successful.
+2025-12-17 09:38:47.659 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-17 09:38:47.667 +05:30 [INF] Executing endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)'
+2025-12-17 09:38:47.700 +05:30 [INF] Route matched with {action = "GetAzureAdLoginUrl", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAzureAdLoginUrl() on controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API).
+2025-12-17 09:38:47.709 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-17 09:38:47.714 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-17 09:38:47.721 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-17 09:38:47.728 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-17 09:38:47.734 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-17 09:38:47.743 +05:30 [DBG] Executing controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-17 09:38:47.920 +05:30 [DBG] Executed controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-17 09:38:47.927 +05:30 [INF] Azure AD login URL requested
+2025-12-17 09:38:47.936 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-17 09:38:47.947 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-12-17 09:38:47.950 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-17 09:38:47.954 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-17 09:38:47.960 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-17 09:38:47.965 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-17 09:38:48.035 +05:30 [INF] Executed action EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API) in 286.1117ms
+2025-12-17 09:38:48.041 +05:30 [INF] Executed endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)'
+2025-12-17 09:38:48.045 +05:30 [DBG] Connection id "0HNHT47T2ODGH" completed keep alive response.
+2025-12-17 09:38:48.050 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5085/api/auth/azure-ad-login-url - 200 null application/json; charset=utf-8 608.1682ms
+2025-12-17 09:39:58.870 +05:30 [INF] Application is shutting down...
+2025-12-17 09:39:58.875 +05:30 [DBG] Hosting stopping
+2025-12-17 09:39:58.893 +05:30 [DBG] Connection id "0HNHT47T2ODGH" disconnecting.
+2025-12-17 09:39:58.898 +05:30 [DBG] Connection id "0HNHT47T2ODGH" stopped.
+2025-12-17 09:39:58.901 +05:30 [DBG] Connection id "0HNHT47T2ODGH" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-17 09:39:58.907 +05:30 [DBG] Hosting stopped

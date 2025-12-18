@@ -20,5 +20,6 @@ namespace EventTracker.Auth.Domain.Entities
         
         // Navigation property
         public virtual ICollection<UserProfile> Profiles { get; set; } = new List<UserProfile>();
+        public string PasswordHash { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using Serilog;
 using System.Text;
 using EventTracker.Auth.API.Extensions;
 using EventTracker.Auth.Infrastructure.Persistence;
+using EventTracker.Auth.Infrastructure.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,11 @@ try
     // var jwtSettings = builder.Configuration.GetSection("JwtSettings");
     // var secretKey = jwtSettings["SecretKey"];
     // var key = Encoding.UTF8.GetBytes(secretKey);
+
+
+    //Configure settings
+    var azureAdSettings = builder.Configuration.GetSection("AzureAd");
+    builder.Services.Configure<AzureAdSettings>(azureAdSettings);
 
     // JWT Configuration
     var jwtSettings = builder.Configuration.GetSection("JwtSettings");

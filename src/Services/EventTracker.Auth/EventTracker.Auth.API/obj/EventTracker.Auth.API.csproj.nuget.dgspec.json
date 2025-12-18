@@ -123,6 +123,9 @@
             "projectReferences": {
               "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj": {
                 "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj"
+              },
+              "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Infrastructure\\EventTracker.Auth.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Infrastructure\\EventTracker.Auth.Infrastructure.csproj"
               }
             }
           }
@@ -150,6 +153,10 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[11.8.0, )"
@@ -157,6 +164,14 @@
             "FluentValidation.DependencyInjectionExtensions": {
               "target": "Package",
               "version": "[11.8.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
