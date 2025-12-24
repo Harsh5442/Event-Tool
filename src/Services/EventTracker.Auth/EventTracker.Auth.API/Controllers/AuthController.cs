@@ -512,6 +512,7 @@ using System.IdentityModel.Tokens.Jwt;
 using EventTracker.Auth.Application.DTOs;
 using EventTracker.Auth.Infrastructure.Settings;
 using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EventTracker.Auth.API.Controllers
 {
@@ -623,6 +624,81 @@ namespace EventTracker.Auth.API.Controllers
                 _logger.LogError($"❌ Stack trace: {ex.StackTrace}");
                 return Unauthorized(new { message = "Authentication failed: " + ex.Message });
             }
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginRequestDto request)
+        {
+            try
+            {
+                _logger.LogInformation($"Login attempt: {request.Email} as {request.Role}");
+
+                if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+                {
+                    _logger.LogError("Email or password is empty");
+                    return Unauthorized(new { message = "Email and password are required" });
+                }
+                // For demo: Accept any email/password combination
+                // In production, verify against database with hashed passwords
+                if (string.IsNullOrEmpty(request.Password) || request.Password.Length < 3)
+                {
+                    _logger.LogError("Invalid password");
+                    return Unauthorized(new { message = "Invalid email or password" });
+                }
+
+                // Parse the email to get name
+                var nameParts = request.Email.Split('@')[0].Split('.');
+                var firstName = nameParts.Length > 0 ? nameParts[0] : "User";
+                var lastName = nameParts.Length > 1 ? nameParts[1] : "";
+
+                _logger.LogInformation($"✅ User authenticated: {request.Email} as {request.Role}");
+
+                var response = new
+                {
+                    userId = Guid.NewGuid().ToString(),
+                    email = request.Email,
+                    firstName = firstName,
+                    lastName = lastName,
+                    role = request.Role,
+                    accessToken = GenerateJwtToken(request.Email, request.Role),
+                    expiresAt = DateTime.UtcNow.AddHours(1)
+                };
+
+                 _logger.LogInformation($"✅ Returning success response for user: {request.Email}");
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"❌ Login exception: {ex.Message}");
+                return Unauthorized(new { message = "Login failed: " + ex.Message });
+            }
+        }
+
+        private string GenerateJwtToken(string email, string role)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = System.Text.Encoding.ASCII.GetBytes("your-secret-key-minimum-32-characters-long");
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.Email, email),
+                    new Claim(ClaimTypes.NameIdentifier, Guid.NewGuid().ToString()),
+                    new Claim("role", role)
+                }),
+                Expires = DateTime.UtcNow.AddHours(1),
+                Issuer = "event-tracker-auth",
+                Audience = "event-tracker-app",
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(key), 
+                    SecurityAlgorithms.HmacSha256Signature
+                )
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
 
         private ClaimsPrincipal ValidateAzureAdToken(string token)

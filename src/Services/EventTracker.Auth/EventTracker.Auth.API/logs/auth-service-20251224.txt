@@ -1,0 +1,878 @@
+2025-12-24 16:44:10.289 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-12-24 16:44:11.381 +05:30 [DBG] Entity Framework Core 8.0.0 initialized 'AuthDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.0' with options: None
+2025-12-24 16:44:11.422 +05:30 [DBG] Creating DbConnection.
+2025-12-24 16:44:11.504 +05:30 [DBG] Created DbConnection. (79ms).
+2025-12-24 16:44:11.616 +05:30 [DBG] Opening connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 16:44:11.972 +05:30 [DBG] Opened connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 16:44:11.983 +05:30 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2025-12-24 16:44:11.998 +05:30 [DBG] Created DbCommand for 'ExecuteNonQuery' (10ms).
+2025-12-24 16:44:12.006 +05:30 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (23ms).
+2025-12-24 16:44:12.020 +05:30 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-24 16:44:12.073 +05:30 [INF] Executed DbCommand (50ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-24 16:44:12.080 +05:30 [DBG] Closing connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 16:44:12.095 +05:30 [DBG] Closed connection to database 'EventTracker_Auth' on server '(local)' (10ms).
+2025-12-24 16:44:12.100 +05:30 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-12-24 16:44:12.102 +05:30 [DBG] Created DbCommand for 'ExecuteScalar' (2ms).
+2025-12-24 16:44:12.104 +05:30 [DBG] Initialized DbCommand for 'ExecuteScalar' (4ms).
+2025-12-24 16:44:12.107 +05:30 [DBG] Opening connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 16:44:12.111 +05:30 [DBG] Opened connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 16:44:12.113 +05:30 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-24 16:44:12.198 +05:30 [INF] Executed DbCommand (85ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-24 16:44:12.203 +05:30 [DBG] Closing connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 16:44:12.205 +05:30 [DBG] Closed connection to database 'EventTracker_Auth' on server '(local)' (2ms).
+2025-12-24 16:44:12.209 +05:30 [DBG] 'AuthDbContext' disposed.
+2025-12-24 16:44:12.214 +05:30 [DBG] Disposing connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 16:44:12.217 +05:30 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-12-24 16:44:12.283 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-12-24 16:44:12.349 +05:30 [DBG] Hosting starting
+2025-12-24 16:44:12.366 +05:30 [INF] User profile is available. Using 'C:\Users\w199615\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-24 16:44:12.378 +05:30 [DBG] Reading data from file 'C:\Users\w199615\AppData\Local\ASP.NET\DataProtection-Keys\key-0f9824b6-b006-44d6-96a0-7f00dad5e3f2.xml'.
+2025-12-24 16:44:12.389 +05:30 [DBG] Found key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2}.
+2025-12-24 16:44:12.404 +05:30 [DBG] Considering key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2} with expiration date 2026-03-11 06:25:41Z as default key.
+2025-12-24 16:44:12.409 +05:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-12-24 16:44:12.477 +05:30 [DBG] Decrypting secret element using Windows DPAPI.
+2025-12-24 16:44:12.482 +05:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-12-24 16:44:12.489 +05:30 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-12-24 16:44:12.492 +05:30 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-12-24 16:44:12.496 +05:30 [DBG] Using key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2} as the default key.
+2025-12-24 16:44:12.500 +05:30 [DBG] Key ring with default key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2} was loaded during application startup.
+2025-12-24 16:44:12.558 +05:30 [INF] Now listening on: http://localhost:5085
+2025-12-24 16:44:12.561 +05:30 [DBG] Loaded hosting startup assembly EventTracker.Auth.API
+2025-12-24 16:44:12.563 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-24 16:44:12.565 +05:30 [INF] Hosting environment: Development
+2025-12-24 16:44:12.568 +05:30 [INF] Content root path: C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.API
+2025-12-24 16:44:12.570 +05:30 [DBG] Hosting started
+2025-12-24 16:44:16.613 +05:30 [DBG] Connection id "0HNI2RM9QUHDO" accepted.
+2025-12-24 16:44:16.616 +05:30 [DBG] Connection id "0HNI2RM9QUHDO" started.
+2025-12-24 16:44:16.657 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5085/api/auth/azure-ad-login-url - null null
+2025-12-24 16:44:16.672 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-12-24 16:44:16.702 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-login-url'
+2025-12-24 16:44:16.707 +05:30 [DBG] Endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)' with route pattern 'api/Auth/azure-ad-login-url' is valid for the request path '/api/auth/azure-ad-login-url'
+2025-12-24 16:44:16.711 +05:30 [DBG] Request matched endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)'
+2025-12-24 16:44:16.741 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 16:44:16.743 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-12-24 16:44:16.747 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:16.749 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:16.794 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-24 16:44:16.799 +05:30 [INF] Executing endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)'
+2025-12-24 16:44:16.817 +05:30 [INF] Route matched with {action = "GetAzureAdLoginUrl", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAzureAdLoginUrl() on controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API).
+2025-12-24 16:44:16.823 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-24 16:44:16.826 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-24 16:44:16.830 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-24 16:44:16.833 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-24 16:44:16.836 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-24 16:44:16.840 +05:30 [DBG] Executing controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:16.852 +05:30 [DBG] Executed controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:16.857 +05:30 [INF] Getting Azure AD login URL
+2025-12-24 16:44:16.858 +05:30 [INF] Redirect URI: http://localhost:3000/azure-ad-callback
+2025-12-24 16:44:16.863 +05:30 [INF] Azure AD login URL generated successfully
+2025-12-24 16:44:16.867 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-24 16:44:16.874 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-12-24 16:44:16.878 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-24 16:44:16.880 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-24 16:44:16.882 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-24 16:44:16.886 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-24 16:44:16.921 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" accepted.
+2025-12-24 16:44:16.921 +05:30 [INF] Executed action EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API) in 76.7781ms
+2025-12-24 16:44:16.923 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" started.
+2025-12-24 16:44:16.927 +05:30 [INF] Executed endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)'
+2025-12-24 16:44:16.929 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5085/api/auth/azure-ad-login-url - null null
+2025-12-24 16:44:16.930 +05:30 [DBG] Connection id "0HNI2RM9QUHDO" completed keep alive response.
+2025-12-24 16:44:16.936 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-login-url'
+2025-12-24 16:44:16.937 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5085/api/auth/azure-ad-login-url - 200 null application/json; charset=utf-8 281.7207ms
+2025-12-24 16:44:16.938 +05:30 [DBG] Endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)' with route pattern 'api/Auth/azure-ad-login-url' is valid for the request path '/api/auth/azure-ad-login-url'
+2025-12-24 16:44:16.964 +05:30 [DBG] Request matched endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)'
+2025-12-24 16:44:16.970 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 16:44:16.973 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:16.976 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:16.998 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-24 16:44:17.000 +05:30 [INF] Executing endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)'
+2025-12-24 16:44:17.003 +05:30 [INF] Route matched with {action = "GetAzureAdLoginUrl", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAzureAdLoginUrl() on controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API).
+2025-12-24 16:44:17.009 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-24 16:44:17.012 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-24 16:44:17.015 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-24 16:44:17.020 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-24 16:44:17.027 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-24 16:44:17.031 +05:30 [DBG] Executing controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:17.033 +05:30 [DBG] Executed controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:17.037 +05:30 [INF] Getting Azure AD login URL
+2025-12-24 16:44:17.039 +05:30 [INF] Redirect URI: http://localhost:3000/azure-ad-callback
+2025-12-24 16:44:17.043 +05:30 [INF] Azure AD login URL generated successfully
+2025-12-24 16:44:17.053 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-24 16:44:17.059 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-12-24 16:44:17.061 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-24 16:44:17.064 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-24 16:44:17.066 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-24 16:44:17.069 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-24 16:44:17.073 +05:30 [INF] Executed action EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API) in 42.1473ms
+2025-12-24 16:44:17.076 +05:30 [INF] Executed endpoint 'EventTracker.Auth.API.Controllers.AuthController.GetAzureAdLoginUrl (EventTracker.Auth.API)'
+2025-12-24 16:44:17.079 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" completed keep alive response.
+2025-12-24 16:44:17.082 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5085/api/auth/azure-ad-login-url - 200 null application/json; charset=utf-8 152.2898ms
+2025-12-24 16:44:31.319 +05:30 [DBG] Connection id "0HNI2RM9QUHDQ" accepted.
+2025-12-24 16:44:31.321 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5085/api/auth/azure-ad-callback - null null
+2025-12-24 16:44:31.332 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.323 +05:30 [DBG] Connection id "0HNI2RM9QUHDQ" started.
+2025-12-24 16:44:31.325 +05:30 [DBG] Connection id "0HNI2RM9QUHDR" accepted.
+2025-12-24 16:44:31.321 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5085/api/auth/azure-ad-callback - null null
+2025-12-24 16:44:31.337 +05:30 [DBG] Request matched endpoint '405 HTTP Method Not Supported'
+2025-12-24 16:44:31.339 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5085/api/auth/azure-ad-callback - null null
+2025-12-24 16:44:31.352 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.344 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.349 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 16:44:31.341 +05:30 [DBG] Connection id "0HNI2RM9QUHDR" started.
+2025-12-24 16:44:31.354 +05:30 [DBG] Request matched endpoint '405 HTTP Method Not Supported'
+2025-12-24 16:44:31.356 +05:30 [DBG] Request matched endpoint '405 HTTP Method Not Supported'
+2025-12-24 16:44:31.359 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:31.360 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5085/api/auth/azure-ad-callback - null null
+2025-12-24 16:44:31.365 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 16:44:31.367 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 16:44:31.370 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:31.374 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.376 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:31.377 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:31.379 +05:30 [DBG] The request is a preflight request.
+2025-12-24 16:44:31.381 +05:30 [DBG] Request matched endpoint '405 HTTP Method Not Supported'
+2025-12-24 16:44:31.383 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:31.384 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:31.386 +05:30 [DBG] Connection id "0HNI2RM9QUHDO" completed keep alive response.
+2025-12-24 16:44:31.387 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 16:44:31.389 +05:30 [DBG] The request is a preflight request.
+2025-12-24 16:44:31.390 +05:30 [DBG] The request is a preflight request.
+2025-12-24 16:44:31.392 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5085/api/auth/azure-ad-callback - 204 null null 70.9566ms
+2025-12-24 16:44:31.393 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:31.395 +05:30 [DBG] Connection id "0HNI2RM9QUHDQ" completed keep alive response.
+2025-12-24 16:44:31.396 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" completed keep alive response.
+2025-12-24 16:44:31.402 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5085/api/auth/azure-ad-callback - application/json 2650
+2025-12-24 16:44:31.402 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:31.404 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5085/api/auth/azure-ad-callback - 204 null null 64.7918ms
+2025-12-24 16:44:31.406 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5085/api/auth/azure-ad-callback - 204 null null 84.6965ms
+2025-12-24 16:44:31.411 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.412 +05:30 [DBG] The request is a preflight request.
+2025-12-24 16:44:31.418 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5085/api/auth/azure-ad-callback - application/json 2650
+2025-12-24 16:44:31.422 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5085/api/auth/azure-ad-callback - application/json 2650
+2025-12-24 16:44:31.424 +05:30 [DBG] Endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)' with route pattern 'api/Auth/azure-ad-callback' is valid for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.425 +05:30 [DBG] Connection id "0HNI2RM9QUHDR" completed keep alive response.
+2025-12-24 16:44:31.430 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.434 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.436 +05:30 [DBG] Request matched endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:31.438 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5085/api/auth/azure-ad-callback - 204 null null 78.0296ms
+2025-12-24 16:44:31.440 +05:30 [DBG] Endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)' with route pattern 'api/Auth/azure-ad-callback' is valid for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.442 +05:30 [DBG] Endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)' with route pattern 'api/Auth/azure-ad-callback' is valid for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.444 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 16:44:31.450 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5085/api/auth/azure-ad-callback - application/json 2650
+2025-12-24 16:44:31.452 +05:30 [DBG] Request matched endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:31.455 +05:30 [DBG] Request matched endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:31.456 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:31.460 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.461 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 16:44:31.463 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 16:44:31.464 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:31.466 +05:30 [DBG] Endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)' with route pattern 'api/Auth/azure-ad-callback' is valid for the request path '/api/auth/azure-ad-callback'
+2025-12-24 16:44:31.468 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:31.469 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:31.473 +05:30 [DBG] Request matched endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:31.474 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-24 16:44:31.476 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:31.478 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:31.480 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 16:44:31.481 +05:30 [INF] Executing endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:31.483 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-24 16:44:31.485 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-24 16:44:31.486 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:31.489 +05:30 [INF] Executing endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:31.491 +05:30 [INF] Executing endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:31.493 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:31.498 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-24 16:44:31.499 +05:30 [INF] Route matched with {action = "AzureAdCallback", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AzureAdCallback(EventTracker.Auth.Application.DTOs.AzureAdCallbackDto) on controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API).
+2025-12-24 16:44:31.499 +05:30 [INF] Route matched with {action = "AzureAdCallback", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AzureAdCallback(EventTracker.Auth.Application.DTOs.AzureAdCallbackDto) on controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API).
+2025-12-24 16:44:31.499 +05:30 [INF] Route matched with {action = "AzureAdCallback", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AzureAdCallback(EventTracker.Auth.Application.DTOs.AzureAdCallbackDto) on controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API).
+2025-12-24 16:44:31.500 +05:30 [INF] Executing endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:31.503 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-24 16:44:31.506 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-24 16:44:31.509 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-24 16:44:31.511 +05:30 [INF] Route matched with {action = "AzureAdCallback", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AzureAdCallback(EventTracker.Auth.Application.DTOs.AzureAdCallbackDto) on controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API).
+2025-12-24 16:44:31.513 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-24 16:44:31.515 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-24 16:44:31.517 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-24 16:44:31.521 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-24 16:44:31.523 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-24 16:44:31.525 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-24 16:44:31.528 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-24 16:44:31.530 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-24 16:44:31.533 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-24 16:44:31.536 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-24 16:44:31.538 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-24 16:44:31.541 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-24 16:44:31.543 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-24 16:44:31.545 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-24 16:44:31.548 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-24 16:44:31.551 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-24 16:44:31.553 +05:30 [DBG] Executing controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:31.556 +05:30 [DBG] Executing controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:31.559 +05:30 [DBG] Executing controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:31.569 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-24 16:44:31.572 +05:30 [DBG] Executed controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:31.574 +05:30 [DBG] Executed controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:31.577 +05:30 [DBG] Executed controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:31.579 +05:30 [DBG] Executing controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:31.587 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' ...
+2025-12-24 16:44:31.587 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' ...
+2025-12-24 16:44:31.588 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' ...
+2025-12-24 16:44:31.591 +05:30 [DBG] Executed controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 16:44:31.596 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' using the name '' in request data ...
+2025-12-24 16:44:31.597 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' using the name '' in request data ...
+2025-12-24 16:44:31.599 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' using the name '' in request data ...
+2025-12-24 16:44:31.602 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' ...
+2025-12-24 16:44:31.606 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-12-24 16:44:31.608 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-12-24 16:44:31.610 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-12-24 16:44:31.612 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' using the name '' in request data ...
+2025-12-24 16:44:31.622 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-12-24 16:44:31.623 +05:30 [DBG] Connection id "0HNI2RM9QUHDQ", Request id "0HNI2RM9QUHDQ:00000002": started reading request body.
+2025-12-24 16:44:31.623 +05:30 [DBG] Connection id "0HNI2RM9QUHDP", Request id "0HNI2RM9QUHDP:00000003": started reading request body.
+2025-12-24 16:44:31.623 +05:30 [DBG] Connection id "0HNI2RM9QUHDO", Request id "0HNI2RM9QUHDO:00000003": started reading request body.
+2025-12-24 16:44:31.624 +05:30 [DBG] Connection id "0HNI2RM9QUHDR", Request id "0HNI2RM9QUHDR:00000002": started reading request body.
+2025-12-24 16:44:31.627 +05:30 [DBG] Connection id "0HNI2RM9QUHDQ", Request id "0HNI2RM9QUHDQ:00000002": done reading request body.
+2025-12-24 16:44:31.628 +05:30 [DBG] Connection id "0HNI2RM9QUHDP", Request id "0HNI2RM9QUHDP:00000003": done reading request body.
+2025-12-24 16:44:31.630 +05:30 [DBG] Connection id "0HNI2RM9QUHDO", Request id "0HNI2RM9QUHDO:00000003": done reading request body.
+2025-12-24 16:44:31.632 +05:30 [DBG] Connection id "0HNI2RM9QUHDR", Request id "0HNI2RM9QUHDR:00000002": done reading request body.
+2025-12-24 16:44:31.642 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'
+2025-12-24 16:44:31.642 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'
+2025-12-24 16:44:31.642 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'
+2025-12-24 16:44:31.643 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'
+2025-12-24 16:44:31.644 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.645 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.647 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.649 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.651 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.653 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.656 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.658 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.660 +05:30 [DBG] Attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' ...
+2025-12-24 16:44:31.662 +05:30 [DBG] Attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' ...
+2025-12-24 16:44:31.682 +05:30 [DBG] Attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' ...
+2025-12-24 16:44:31.684 +05:30 [DBG] Attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto' ...
+2025-12-24 16:44:31.697 +05:30 [DBG] Done attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.719 +05:30 [DBG] Done attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.728 +05:30 [DBG] Done attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.737 +05:30 [INF] === Azure AD CALLBACK START ===
+2025-12-24 16:44:31.737 +05:30 [INF] Validating Azure AD token...
+2025-12-24 16:44:31.740 +05:30 [INF] Starting token validation...
+2025-12-24 16:44:31.736 +05:30 [INF] === Azure AD CALLBACK START ===
+2025-12-24 16:44:31.730 +05:30 [DBG] Done attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.AzureAdCallbackDto'.
+2025-12-24 16:44:31.736 +05:30 [INF] === Azure AD CALLBACK START ===
+2025-12-24 16:44:31.747 +05:30 [INF] Validating Azure AD token...
+2025-12-24 16:44:31.750 +05:30 [INF] === Azure AD CALLBACK START ===
+2025-12-24 16:44:31.750 +05:30 [INF] Token can be read
+2025-12-24 16:44:31.751 +05:30 [INF] Validating Azure AD token...
+2025-12-24 16:44:31.752 +05:30 [INF] Starting token validation...
+2025-12-24 16:44:31.754 +05:30 [INF] Validating Azure AD token...
+2025-12-24 16:44:31.757 +05:30 [INF] Starting token validation...
+2025-12-24 16:44:31.758 +05:30 [INF] Token can be read
+2025-12-24 16:44:31.760 +05:30 [INF] Starting token validation...
+2025-12-24 16:44:31.761 +05:30 [INF] Token can be read
+2025-12-24 16:44:31.764 +05:30 [INF] Token can be read
+2025-12-24 16:44:31.783 +05:30 [INF] JWT Token parsed successfully
+2025-12-24 16:44:31.783 +05:30 [INF] JWT Token parsed successfully
+2025-12-24 16:44:31.783 +05:30 [INF] JWT Token parsed successfully
+2025-12-24 16:44:31.783 +05:30 [INF] JWT Token parsed successfully
+2025-12-24 16:44:31.789 +05:30 [INF] Token claims count: 45
+2025-12-24 16:44:31.789 +05:30 [INF] Token claims count: 45
+2025-12-24 16:44:31.789 +05:30 [INF] Token claims count: 45
+2025-12-24 16:44:31.789 +05:30 [INF] Token claims count: 45
+2025-12-24 16:44:31.791 +05:30 [INF]   Claim: aud = 00000003-0000-0000-c000-000000000000
+2025-12-24 16:44:31.792 +05:30 [INF]   Claim: aud = 00000003-0000-0000-c000-000000000000
+2025-12-24 16:44:31.794 +05:30 [INF]   Claim: aud = 00000003-0000-0000-c000-000000000000
+2025-12-24 16:44:31.795 +05:30 [INF]   Claim: aud = 00000003-0000-0000-c000-000000000000
+2025-12-24 16:44:31.796 +05:30 [INF]   Claim: iss = https://sts.windows.net/5d1e490a-8455-4ecb-b5a4-67f86e2f1d7d/
+2025-12-24 16:44:31.798 +05:30 [INF]   Claim: iss = https://sts.windows.net/5d1e490a-8455-4ecb-b5a4-67f86e2f1d7d/
+2025-12-24 16:44:31.799 +05:30 [INF]   Claim: iss = https://sts.windows.net/5d1e490a-8455-4ecb-b5a4-67f86e2f1d7d/
+2025-12-24 16:44:31.801 +05:30 [INF]   Claim: iss = https://sts.windows.net/5d1e490a-8455-4ecb-b5a4-67f86e2f1d7d/
+2025-12-24 16:44:31.802 +05:30 [INF]   Claim: iat = 1766574570
+2025-12-24 16:44:31.803 +05:30 [INF]   Claim: iat = 1766574570
+2025-12-24 16:44:31.805 +05:30 [INF]   Claim: iat = 1766574570
+2025-12-24 16:44:31.806 +05:30 [INF]   Claim: iat = 1766574570
+2025-12-24 16:44:31.808 +05:30 [INF]   Claim: nbf = 1766574570
+2025-12-24 16:44:31.809 +05:30 [INF]   Claim: nbf = 1766574570
+2025-12-24 16:44:31.811 +05:30 [INF]   Claim: nbf = 1766574570
+2025-12-24 16:44:31.812 +05:30 [INF]   Claim: nbf = 1766574570
+2025-12-24 16:44:31.813 +05:30 [INF]   Claim: exp = 1766579310
+2025-12-24 16:44:31.815 +05:30 [INF]   Claim: exp = 1766579310
+2025-12-24 16:44:31.816 +05:30 [INF]   Claim: exp = 1766579310
+2025-12-24 16:44:31.817 +05:30 [INF]   Claim: exp = 1766579310
+2025-12-24 16:44:31.819 +05:30 [INF]   Claim: acct = 0
+2025-12-24 16:44:31.820 +05:30 [INF]   Claim: acct = 0
+2025-12-24 16:44:31.822 +05:30 [INF]   Claim: acct = 0
+2025-12-24 16:44:31.823 +05:30 [INF]   Claim: acct = 0
+2025-12-24 16:44:31.825 +05:30 [INF]   Claim: acr = 1
+2025-12-24 16:44:31.826 +05:30 [INF]   Claim: acr = 1
+2025-12-24 16:44:31.827 +05:30 [INF]   Claim: acr = 1
+2025-12-24 16:44:31.829 +05:30 [INF]   Claim: acr = 1
+2025-12-24 16:44:31.830 +05:30 [INF]   Claim: acrs = p1
+2025-12-24 16:44:31.832 +05:30 [INF]   Claim: acrs = p1
+2025-12-24 16:44:31.833 +05:30 [INF]   Claim: acrs = p1
+2025-12-24 16:44:31.834 +05:30 [INF]   Claim: acrs = p1
+2025-12-24 16:44:31.836 +05:30 [INF]   Claim: acrs = urn:user:registersecurityinfo
+2025-12-24 16:44:31.837 +05:30 [INF]   Claim: acrs = urn:user:registersecurityinfo
+2025-12-24 16:44:31.839 +05:30 [INF]   Claim: acrs = urn:user:registersecurityinfo
+2025-12-24 16:44:31.840 +05:30 [INF]   Claim: acrs = urn:user:registersecurityinfo
+2025-12-24 16:44:31.842 +05:30 [INF]   Claim: aio = AaQAW/8aAAAArVXf2JY/JHWgVLuHLfmYCzSFLMW0qhSQjLmOrj9CWG7PBGx7QSf2TAWzykVnV62Rt2x1uDL2XSroNHHd7P0qAVsFryc1SIrVWsXWkdlqifObonsFtCes4ZpzlsKw3fDGb3nGRo4XSscfOhxWUOY9wgu6Zl2B1Hh/hDN/XFAR4WvvJ7tSwbo1W6SOgc1N9X7tHILENrfnPwxSnsXragp0NA==
+2025-12-24 16:44:31.843 +05:30 [INF]   Claim: aio = AaQAW/8aAAAArVXf2JY/JHWgVLuHLfmYCzSFLMW0qhSQjLmOrj9CWG7PBGx7QSf2TAWzykVnV62Rt2x1uDL2XSroNHHd7P0qAVsFryc1SIrVWsXWkdlqifObonsFtCes4ZpzlsKw3fDGb3nGRo4XSscfOhxWUOY9wgu6Zl2B1Hh/hDN/XFAR4WvvJ7tSwbo1W6SOgc1N9X7tHILENrfnPwxSnsXragp0NA==
+2025-12-24 16:44:31.844 +05:30 [INF]   Claim: aio = AaQAW/8aAAAArVXf2JY/JHWgVLuHLfmYCzSFLMW0qhSQjLmOrj9CWG7PBGx7QSf2TAWzykVnV62Rt2x1uDL2XSroNHHd7P0qAVsFryc1SIrVWsXWkdlqifObonsFtCes4ZpzlsKw3fDGb3nGRo4XSscfOhxWUOY9wgu6Zl2B1Hh/hDN/XFAR4WvvJ7tSwbo1W6SOgc1N9X7tHILENrfnPwxSnsXragp0NA==
+2025-12-24 16:44:31.846 +05:30 [INF]   Claim: aio = AaQAW/8aAAAArVXf2JY/JHWgVLuHLfmYCzSFLMW0qhSQjLmOrj9CWG7PBGx7QSf2TAWzykVnV62Rt2x1uDL2XSroNHHd7P0qAVsFryc1SIrVWsXWkdlqifObonsFtCes4ZpzlsKw3fDGb3nGRo4XSscfOhxWUOY9wgu6Zl2B1Hh/hDN/XFAR4WvvJ7tSwbo1W6SOgc1N9X7tHILENrfnPwxSnsXragp0NA==
+2025-12-24 16:44:31.847 +05:30 [INF]   Claim: altsecid = 1:live.com:000340015E347594
+2025-12-24 16:44:31.848 +05:30 [INF]   Claim: altsecid = 1:live.com:000340015E347594
+2025-12-24 16:44:31.850 +05:30 [INF]   Claim: altsecid = 1:live.com:000340015E347594
+2025-12-24 16:44:31.851 +05:30 [INF]   Claim: altsecid = 1:live.com:000340015E347594
+2025-12-24 16:44:31.853 +05:30 [INF]   Claim: amr = pwd
+2025-12-24 16:44:31.854 +05:30 [INF]   Claim: amr = pwd
+2025-12-24 16:44:31.856 +05:30 [INF]   Claim: amr = pwd
+2025-12-24 16:44:31.857 +05:30 [INF]   Claim: amr = pwd
+2025-12-24 16:44:31.859 +05:30 [INF]   Claim: amr = mfa
+2025-12-24 16:44:31.860 +05:30 [INF]   Claim: amr = mfa
+2025-12-24 16:44:31.861 +05:30 [INF]   Claim: amr = mfa
+2025-12-24 16:44:31.863 +05:30 [INF]   Claim: amr = mfa
+2025-12-24 16:44:31.864 +05:30 [INF]   Claim: app_displayname = EventTracker Auth Service
+2025-12-24 16:44:31.865 +05:30 [INF]   Claim: app_displayname = EventTracker Auth Service
+2025-12-24 16:44:31.867 +05:30 [INF]   Claim: app_displayname = EventTracker Auth Service
+2025-12-24 16:44:31.868 +05:30 [INF]   Claim: app_displayname = EventTracker Auth Service
+2025-12-24 16:44:31.869 +05:30 [INF]   Claim: appid = aae2d84a-dd2e-4710-8b00-7bf7cce23bdf
+2025-12-24 16:44:31.871 +05:30 [INF]   Claim: appid = aae2d84a-dd2e-4710-8b00-7bf7cce23bdf
+2025-12-24 16:44:31.873 +05:30 [INF]   Claim: appid = aae2d84a-dd2e-4710-8b00-7bf7cce23bdf
+2025-12-24 16:44:31.874 +05:30 [INF]   Claim: appid = aae2d84a-dd2e-4710-8b00-7bf7cce23bdf
+2025-12-24 16:44:31.876 +05:30 [INF]   Claim: appidacr = 0
+2025-12-24 16:44:31.877 +05:30 [INF]   Claim: appidacr = 0
+2025-12-24 16:44:31.878 +05:30 [INF]   Claim: appidacr = 0
+2025-12-24 16:44:31.880 +05:30 [INF]   Claim: appidacr = 0
+2025-12-24 16:44:31.881 +05:30 [INF]   Claim: email = harshgaikwadofficial@gmail.com
+2025-12-24 16:44:31.882 +05:30 [INF]   Claim: email = harshgaikwadofficial@gmail.com
+2025-12-24 16:44:31.884 +05:30 [INF]   Claim: email = harshgaikwadofficial@gmail.com
+2025-12-24 16:44:31.885 +05:30 [INF]   Claim: email = harshgaikwadofficial@gmail.com
+2025-12-24 16:44:31.886 +05:30 [INF]   Claim: family_name = Gaikwad
+2025-12-24 16:44:31.888 +05:30 [INF]   Claim: family_name = Gaikwad
+2025-12-24 16:44:31.889 +05:30 [INF]   Claim: family_name = Gaikwad
+2025-12-24 16:44:31.890 +05:30 [INF]   Claim: family_name = Gaikwad
+2025-12-24 16:44:31.892 +05:30 [INF]   Claim: given_name = Harsh
+2025-12-24 16:44:31.893 +05:30 [INF]   Claim: given_name = Harsh
+2025-12-24 16:44:31.895 +05:30 [INF]   Claim: given_name = Harsh
+2025-12-24 16:44:31.896 +05:30 [INF]   Claim: given_name = Harsh
+2025-12-24 16:44:31.897 +05:30 [INF]   Claim: haswids = true
+2025-12-24 16:44:31.899 +05:30 [INF]   Claim: haswids = true
+2025-12-24 16:44:31.901 +05:30 [INF]   Claim: haswids = true
+2025-12-24 16:44:31.902 +05:30 [INF]   Claim: haswids = true
+2025-12-24 16:44:31.903 +05:30 [INF]   Claim: idp = live.com
+2025-12-24 16:44:31.905 +05:30 [INF]   Claim: idp = live.com
+2025-12-24 16:44:31.906 +05:30 [INF]   Claim: idp = live.com
+2025-12-24 16:44:31.908 +05:30 [INF]   Claim: idp = live.com
+2025-12-24 16:44:31.909 +05:30 [INF]   Claim: idtyp = user
+2025-12-24 16:44:31.910 +05:30 [INF]   Claim: idtyp = user
+2025-12-24 16:44:31.912 +05:30 [INF]   Claim: idtyp = user
+2025-12-24 16:44:31.913 +05:30 [INF]   Claim: idtyp = user
+2025-12-24 16:44:31.914 +05:30 [INF]   Claim: ipaddr = 136.226.253.75
+2025-12-24 16:44:31.915 +05:30 [INF]   Claim: ipaddr = 136.226.253.75
+2025-12-24 16:44:31.917 +05:30 [INF]   Claim: ipaddr = 136.226.253.75
+2025-12-24 16:44:31.918 +05:30 [INF]   Claim: ipaddr = 136.226.253.75
+2025-12-24 16:44:31.920 +05:30 [INF]   Claim: name = Harsh Gaikwad
+2025-12-24 16:44:31.921 +05:30 [INF]   Claim: name = Harsh Gaikwad
+2025-12-24 16:44:31.923 +05:30 [INF]   Claim: name = Harsh Gaikwad
+2025-12-24 16:44:31.924 +05:30 [INF]   Claim: name = Harsh Gaikwad
+2025-12-24 16:44:31.926 +05:30 [INF]   Claim: oid = fa6d8e40-ed52-44cf-8bd4-7efae237070d
+2025-12-24 16:44:31.927 +05:30 [INF]   Claim: oid = fa6d8e40-ed52-44cf-8bd4-7efae237070d
+2025-12-24 16:44:31.928 +05:30 [INF]   Claim: oid = fa6d8e40-ed52-44cf-8bd4-7efae237070d
+2025-12-24 16:44:31.930 +05:30 [INF]   Claim: oid = fa6d8e40-ed52-44cf-8bd4-7efae237070d
+2025-12-24 16:44:31.931 +05:30 [INF]   Claim: platf = 3
+2025-12-24 16:44:31.932 +05:30 [INF]   Claim: platf = 3
+2025-12-24 16:44:31.934 +05:30 [INF]   Claim: platf = 3
+2025-12-24 16:44:31.935 +05:30 [INF]   Claim: platf = 3
+2025-12-24 16:44:31.936 +05:30 [INF]   Claim: puid = 100320056081314C
+2025-12-24 16:44:31.938 +05:30 [INF]   Claim: puid = 100320056081314C
+2025-12-24 16:44:31.939 +05:30 [INF]   Claim: puid = 100320056081314C
+2025-12-24 16:44:31.940 +05:30 [INF]   Claim: puid = 100320056081314C
+2025-12-24 16:44:31.942 +05:30 [INF]   Claim: rh = 1.AcYACkkeXVWEy061pGf4bi8dfQMAAAAAAAAAwAAAAAAAAACIATPGAA.
+2025-12-24 16:44:31.943 +05:30 [INF]   Claim: rh = 1.AcYACkkeXVWEy061pGf4bi8dfQMAAAAAAAAAwAAAAAAAAACIATPGAA.
+2025-12-24 16:44:31.945 +05:30 [INF]   Claim: rh = 1.AcYACkkeXVWEy061pGf4bi8dfQMAAAAAAAAAwAAAAAAAAACIATPGAA.
+2025-12-24 16:44:31.946 +05:30 [INF]   Claim: rh = 1.AcYACkkeXVWEy061pGf4bi8dfQMAAAAAAAAAwAAAAAAAAACIATPGAA.
+2025-12-24 16:44:31.947 +05:30 [INF]   Claim: scp = email profile User.Read openid
+2025-12-24 16:44:31.948 +05:30 [INF]   Claim: scp = email profile User.Read openid
+2025-12-24 16:44:31.950 +05:30 [INF]   Claim: scp = email profile User.Read openid
+2025-12-24 16:44:31.951 +05:30 [INF]   Claim: scp = email profile User.Read openid
+2025-12-24 16:44:31.953 +05:30 [INF]   Claim: sid = 00bacc69-97ef-01a3-f20e-f101f2ae2b45
+2025-12-24 16:44:31.955 +05:30 [INF]   Claim: sid = 00bacc69-97ef-01a3-f20e-f101f2ae2b45
+2025-12-24 16:44:31.957 +05:30 [INF]   Claim: sid = 00bacc69-97ef-01a3-f20e-f101f2ae2b45
+2025-12-24 16:44:31.958 +05:30 [INF]   Claim: sid = 00bacc69-97ef-01a3-f20e-f101f2ae2b45
+2025-12-24 16:44:31.959 +05:30 [INF]   Claim: signin_state = kmsi
+2025-12-24 16:44:31.961 +05:30 [INF]   Claim: signin_state = kmsi
+2025-12-24 16:44:31.962 +05:30 [INF]   Claim: signin_state = kmsi
+2025-12-24 16:44:31.963 +05:30 [INF]   Claim: signin_state = kmsi
+2025-12-24 16:44:31.965 +05:30 [INF]   Claim: sub = sYAZOQP7IbN-pM0xBc0679vVcOhir3mdMXISfdbPylc
+2025-12-24 16:44:31.966 +05:30 [INF]   Claim: sub = sYAZOQP7IbN-pM0xBc0679vVcOhir3mdMXISfdbPylc
+2025-12-24 16:44:31.968 +05:30 [INF]   Claim: sub = sYAZOQP7IbN-pM0xBc0679vVcOhir3mdMXISfdbPylc
+2025-12-24 16:44:31.970 +05:30 [INF]   Claim: sub = sYAZOQP7IbN-pM0xBc0679vVcOhir3mdMXISfdbPylc
+2025-12-24 16:44:31.971 +05:30 [INF]   Claim: tenant_region_scope = AS
+2025-12-24 16:44:31.972 +05:30 [INF]   Claim: tenant_region_scope = AS
+2025-12-24 16:44:31.974 +05:30 [INF]   Claim: tenant_region_scope = AS
+2025-12-24 16:44:31.975 +05:30 [INF]   Claim: tenant_region_scope = AS
+2025-12-24 16:44:31.977 +05:30 [INF]   Claim: tid = 5d1e490a-8455-4ecb-b5a4-67f86e2f1d7d
+2025-12-24 16:44:31.978 +05:30 [INF]   Claim: tid = 5d1e490a-8455-4ecb-b5a4-67f86e2f1d7d
+2025-12-24 16:44:31.979 +05:30 [INF]   Claim: tid = 5d1e490a-8455-4ecb-b5a4-67f86e2f1d7d
+2025-12-24 16:44:31.981 +05:30 [INF]   Claim: tid = 5d1e490a-8455-4ecb-b5a4-67f86e2f1d7d
+2025-12-24 16:44:31.982 +05:30 [INF]   Claim: unique_name = live.com#harshgaikwadofficial@gmail.com
+2025-12-24 16:44:31.984 +05:30 [INF]   Claim: unique_name = live.com#harshgaikwadofficial@gmail.com
+2025-12-24 16:44:31.985 +05:30 [INF]   Claim: unique_name = live.com#harshgaikwadofficial@gmail.com
+2025-12-24 16:44:31.986 +05:30 [INF]   Claim: unique_name = live.com#harshgaikwadofficial@gmail.com
+2025-12-24 16:44:31.988 +05:30 [INF]   Claim: uti = ZOLemPj7FkWGICBwqoQWAA
+2025-12-24 16:44:31.990 +05:30 [INF]   Claim: uti = ZOLemPj7FkWGICBwqoQWAA
+2025-12-24 16:44:31.991 +05:30 [INF]   Claim: uti = ZOLemPj7FkWGICBwqoQWAA
+2025-12-24 16:44:31.993 +05:30 [INF]   Claim: uti = ZOLemPj7FkWGICBwqoQWAA
+2025-12-24 16:44:31.994 +05:30 [INF]   Claim: ver = 1.0
+2025-12-24 16:44:31.995 +05:30 [INF]   Claim: ver = 1.0
+2025-12-24 16:44:31.997 +05:30 [INF]   Claim: ver = 1.0
+2025-12-24 16:44:31.998 +05:30 [INF]   Claim: ver = 1.0
+2025-12-24 16:44:32.000 +05:30 [INF]   Claim: xms_acd = 1765865323
+2025-12-24 16:44:32.001 +05:30 [INF]   Claim: xms_acd = 1765865323
+2025-12-24 16:44:32.002 +05:30 [INF]   Claim: xms_acd = 1765865323
+2025-12-24 16:44:32.004 +05:30 [INF]   Claim: xms_acd = 1765865323
+2025-12-24 16:44:32.005 +05:30 [INF]   Claim: xms_act_fct = 3 9
+2025-12-24 16:44:32.007 +05:30 [INF]   Claim: xms_act_fct = 3 9
+2025-12-24 16:44:32.008 +05:30 [INF]   Claim: xms_act_fct = 3 9
+2025-12-24 16:44:32.009 +05:30 [INF]   Claim: xms_act_fct = 3 9
+2025-12-24 16:44:32.010 +05:30 [INF]   Claim: xms_ftd = KtPP4o1BGWATWgHD__CTR76EwrHtK3tSDx9pvnaiSf8Ba29yZWFzb3V0aC1kc21z
+2025-12-24 16:44:32.012 +05:30 [INF]   Claim: xms_ftd = KtPP4o1BGWATWgHD__CTR76EwrHtK3tSDx9pvnaiSf8Ba29yZWFzb3V0aC1kc21z
+2025-12-24 16:44:32.013 +05:30 [INF]   Claim: xms_ftd = KtPP4o1BGWATWgHD__CTR76EwrHtK3tSDx9pvnaiSf8Ba29yZWFzb3V0aC1kc21z
+2025-12-24 16:44:32.014 +05:30 [INF]   Claim: xms_ftd = KtPP4o1BGWATWgHD__CTR76EwrHtK3tSDx9pvnaiSf8Ba29yZWFzb3V0aC1kc21z
+2025-12-24 16:44:32.016 +05:30 [INF]   Claim: xms_idrel = 1 8
+2025-12-24 16:44:32.017 +05:30 [INF]   Claim: xms_idrel = 1 8
+2025-12-24 16:44:32.018 +05:30 [INF]   Claim: xms_idrel = 1 8
+2025-12-24 16:44:32.022 +05:30 [INF]   Claim: xms_idrel = 1 8
+2025-12-24 16:44:32.024 +05:30 [INF]   Claim: xms_st = {"sub":"YhsXRitmDMs2uDwAvcOKerDHBDU1ll8dHsvYowYTeIs"}
+2025-12-24 16:44:32.025 +05:30 [INF]   Claim: xms_st = {"sub":"YhsXRitmDMs2uDwAvcOKerDHBDU1ll8dHsvYowYTeIs"}
+2025-12-24 16:44:32.026 +05:30 [INF]   Claim: xms_st = {"sub":"YhsXRitmDMs2uDwAvcOKerDHBDU1ll8dHsvYowYTeIs"}
+2025-12-24 16:44:32.028 +05:30 [INF]   Claim: xms_st = {"sub":"YhsXRitmDMs2uDwAvcOKerDHBDU1ll8dHsvYowYTeIs"}
+2025-12-24 16:44:32.029 +05:30 [INF]   Claim: xms_sub_fct = 3 10
+2025-12-24 16:44:32.031 +05:30 [INF]   Claim: xms_sub_fct = 3 10
+2025-12-24 16:44:32.033 +05:30 [INF]   Claim: xms_sub_fct = 3 10
+2025-12-24 16:44:32.034 +05:30 [INF]   Claim: xms_sub_fct = 3 10
+2025-12-24 16:44:32.036 +05:30 [INF]   Claim: xms_tcdt = 1765438099
+2025-12-24 16:44:32.037 +05:30 [INF]   Claim: xms_tcdt = 1765438099
+2025-12-24 16:44:32.038 +05:30 [INF]   Claim: xms_tcdt = 1765438099
+2025-12-24 16:44:32.040 +05:30 [INF]   Claim: xms_tcdt = 1765438099
+2025-12-24 16:44:32.041 +05:30 [INF]   Claim: xms_tnt_fct = 3 2
+2025-12-24 16:44:32.042 +05:30 [INF]   Claim: xms_tnt_fct = 3 2
+2025-12-24 16:44:32.044 +05:30 [INF]   Claim: xms_tnt_fct = 3 2
+2025-12-24 16:44:32.045 +05:30 [INF]   Claim: xms_tnt_fct = 3 2
+2025-12-24 16:44:32.047 +05:30 [INF] ClaimsPrincipal created successfully
+2025-12-24 16:44:32.048 +05:30 [INF] ClaimsPrincipal created successfully
+2025-12-24 16:44:32.049 +05:30 [INF] ClaimsPrincipal created successfully
+2025-12-24 16:44:32.051 +05:30 [INF] ClaimsPrincipal created successfully
+2025-12-24 16:44:32.052 +05:30 [INF] Token validated successfully. Claims count: 45
+2025-12-24 16:44:32.053 +05:30 [INF] Token validated successfully. Claims count: 45
+2025-12-24 16:44:32.055 +05:30 [INF] Token validated successfully. Claims count: 45
+2025-12-24 16:44:32.056 +05:30 [INF] Token validated successfully. Claims count: 45
+2025-12-24 16:44:32.058 +05:30 [INF] Extracted claims:
+2025-12-24 16:44:32.059 +05:30 [INF] Extracted claims:
+2025-12-24 16:44:32.060 +05:30 [INF] Extracted claims:
+2025-12-24 16:44:32.061 +05:30 [INF] Extracted claims:
+2025-12-24 16:44:32.063 +05:30 [INF]   - AzureAdId: fa6d8e40-ed52-44cf-8bd4-7efae237070d
+2025-12-24 16:44:32.064 +05:30 [INF]   - AzureAdId: fa6d8e40-ed52-44cf-8bd4-7efae237070d
+2025-12-24 16:44:32.066 +05:30 [INF]   - AzureAdId: fa6d8e40-ed52-44cf-8bd4-7efae237070d
+2025-12-24 16:44:32.067 +05:30 [INF]   - AzureAdId: fa6d8e40-ed52-44cf-8bd4-7efae237070d
+2025-12-24 16:44:32.068 +05:30 [INF]   - Email: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.069 +05:30 [INF]   - Email: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.071 +05:30 [INF]   - Email: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.072 +05:30 [INF]   - Email: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.074 +05:30 [INF]   - FirstName: Harsh
+2025-12-24 16:44:32.075 +05:30 [INF]   - FirstName: Harsh
+2025-12-24 16:44:32.076 +05:30 [INF]   - FirstName: Harsh
+2025-12-24 16:44:32.077 +05:30 [INF]   - FirstName: Harsh
+2025-12-24 16:44:32.079 +05:30 [INF]   - LastName: Gaikwad
+2025-12-24 16:44:32.080 +05:30 [INF]   - LastName: Gaikwad
+2025-12-24 16:44:32.081 +05:30 [INF]   - LastName: Gaikwad
+2025-12-24 16:44:32.082 +05:30 [INF]   - LastName: Gaikwad
+2025-12-24 16:44:32.084 +05:30 [INF] ✅ Azure AD user authenticated: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.085 +05:30 [INF] ✅ Azure AD user authenticated: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.086 +05:30 [INF] ✅ Azure AD user authenticated: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.090 +05:30 [INF] ✅ Azure AD user authenticated: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.092 +05:30 [INF] ✅ Returning success response for user: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.094 +05:30 [INF] ✅ Returning success response for user: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.095 +05:30 [INF] ✅ Returning success response for user: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.096 +05:30 [INF] ✅ Returning success response for user: harshgaikwadofficial@gmail.com
+2025-12-24 16:44:32.098 +05:30 [INF] === Azure AD CALLBACK END ===
+2025-12-24 16:44:32.099 +05:30 [INF] === Azure AD CALLBACK END ===
+2025-12-24 16:44:32.101 +05:30 [INF] === Azure AD CALLBACK END ===
+2025-12-24 16:44:32.102 +05:30 [INF] === Azure AD CALLBACK END ===
+2025-12-24 16:44:32.106 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-24 16:44:32.107 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-24 16:44:32.108 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-24 16:44:32.110 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-24 16:44:32.113 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-12-24 16:44:32.117 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-12-24 16:44:32.121 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-12-24 16:44:32.124 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-12-24 16:44:32.126 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-24 16:44:32.127 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-24 16:44:32.128 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-24 16:44:32.129 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-24 16:44:32.131 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-24 16:44:32.132 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-24 16:44:32.133 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-24 16:44:32.135 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-24 16:44:32.136 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-24 16:44:32.138 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-24 16:44:32.139 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-24 16:44:32.140 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-24 16:44:32.143 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`6[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-24 16:44:32.145 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`6[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-24 16:44:32.147 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`6[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-24 16:44:32.149 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`6[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-24 16:44:32.162 +05:30 [INF] Executed action EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API) in 583.1828ms
+2025-12-24 16:44:32.162 +05:30 [INF] Executed action EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API) in 609.21ms
+2025-12-24 16:44:32.162 +05:30 [INF] Executed action EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API) in 606.7549ms
+2025-12-24 16:44:32.162 +05:30 [INF] Executed action EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API) in 603.7999ms
+2025-12-24 16:44:32.165 +05:30 [INF] Executed endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:32.167 +05:30 [INF] Executed endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:32.169 +05:30 [INF] Executed endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:32.171 +05:30 [INF] Executed endpoint 'EventTracker.Auth.API.Controllers.AuthController.AzureAdCallback (EventTracker.Auth.API)'
+2025-12-24 16:44:32.179 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" completed keep alive response.
+2025-12-24 16:44:32.174 +05:30 [DBG] Connection id "0HNI2RM9QUHDQ" completed keep alive response.
+2025-12-24 16:44:32.176 +05:30 [DBG] Connection id "0HNI2RM9QUHDO" completed keep alive response.
+2025-12-24 16:44:32.186 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5085/api/auth/azure-ad-callback - 200 null application/json; charset=utf-8 784.0376ms
+2025-12-24 16:44:32.183 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5085/api/auth/azure-ad-callback - 200 null application/json; charset=utf-8 760.5915ms
+2025-12-24 16:44:32.184 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5085/api/auth/azure-ad-callback - 200 null application/json; charset=utf-8 766.5209ms
+2025-12-24 16:44:32.172 +05:30 [DBG] Connection id "0HNI2RM9QUHDR" completed keep alive response.
+2025-12-24 16:44:32.207 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5085/api/auth/azure-ad-callback - 200 null application/json; charset=utf-8 757.2796ms
+2025-12-24 16:44:41.140 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5085/api/auth/logout - null null
+2025-12-24 16:44:41.147 +05:30 [DBG] No candidates found for the request path '/api/auth/logout'
+2025-12-24 16:44:41.149 +05:30 [DBG] Request did not match any endpoints
+2025-12-24 16:44:41.156 +05:30 [DBG] OPTIONS requests are not supported
+2025-12-24 16:44:41.157 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:41.158 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:41.160 +05:30 [DBG] The request is a preflight request.
+2025-12-24 16:44:41.161 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" completed keep alive response.
+2025-12-24 16:44:41.163 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5085/api/auth/logout - 204 null null 22.7258ms
+2025-12-24 16:44:41.169 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5085/api/auth/logout - null 0
+2025-12-24 16:44:41.173 +05:30 [DBG] No candidates found for the request path '/api/auth/logout'
+2025-12-24 16:44:41.175 +05:30 [DBG] Request did not match any endpoints
+2025-12-24 16:44:41.177 +05:30 [DBG] POST requests are not supported
+2025-12-24 16:44:41.178 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:41.179 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:41.192 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+ ---> Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(ReadOnlyMemory`1 encodedTokenMemory)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+   --- End of inner exception stack trace ---
+2025-12-24 16:44:41.213 +05:30 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EndcodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2025-12-24 16:44:41.220 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" completed keep alive response.
+2025-12-24 16:44:41.225 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5085/api/auth/logout - 404 0 null 56.0001ms
+2025-12-24 16:44:41.234 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5085/api/auth/logout, Response status code: 404
+2025-12-24 16:44:48.860 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5085/api/auth/login - null null
+2025-12-24 16:44:48.863 +05:30 [DBG] No candidates found for the request path '/api/auth/login'
+2025-12-24 16:44:48.865 +05:30 [DBG] Request did not match any endpoints
+2025-12-24 16:44:48.866 +05:30 [DBG] OPTIONS requests are not supported
+2025-12-24 16:44:48.867 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:48.868 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:48.869 +05:30 [DBG] The request is a preflight request.
+2025-12-24 16:44:48.870 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" completed keep alive response.
+2025-12-24 16:44:48.872 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5085/api/auth/login - 204 null null 12.0553ms
+2025-12-24 16:44:48.875 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5085/api/auth/login - application/json 71
+2025-12-24 16:44:48.878 +05:30 [DBG] No candidates found for the request path '/api/auth/login'
+2025-12-24 16:44:48.879 +05:30 [DBG] Request did not match any endpoints
+2025-12-24 16:44:48.880 +05:30 [DBG] POST requests are not supported
+2025-12-24 16:44:48.881 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:44:48.882 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:44:48.884 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-24 16:44:48.885 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" completed keep alive response.
+2025-12-24 16:44:48.887 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5085/api/auth/login - 404 0 null 11.5426ms
+2025-12-24 16:44:48.890 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5085/api/auth/login, Response status code: 404
+2025-12-24 16:44:48.892 +05:30 [DBG] Connection id "0HNI2RM9QUHDP", Request id "0HNI2RM9QUHDP:00000007": started reading request body.
+2025-12-24 16:44:48.894 +05:30 [DBG] Connection id "0HNI2RM9QUHDP", Request id "0HNI2RM9QUHDP:00000007": done reading request body.
+2025-12-24 16:45:24.158 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5085/api/auth/login - null null
+2025-12-24 16:45:24.161 +05:30 [DBG] No candidates found for the request path '/api/auth/login'
+2025-12-24 16:45:24.162 +05:30 [DBG] Request did not match any endpoints
+2025-12-24 16:45:24.163 +05:30 [DBG] OPTIONS requests are not supported
+2025-12-24 16:45:24.164 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:45:24.165 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:45:24.166 +05:30 [DBG] The request is a preflight request.
+2025-12-24 16:45:24.166 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" completed keep alive response.
+2025-12-24 16:45:24.168 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5085/api/auth/login - 204 null null 9.5246ms
+2025-12-24 16:45:24.171 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5085/api/auth/login - application/json 75
+2025-12-24 16:45:24.173 +05:30 [DBG] No candidates found for the request path '/api/auth/login'
+2025-12-24 16:45:24.174 +05:30 [DBG] Request did not match any endpoints
+2025-12-24 16:45:24.175 +05:30 [DBG] POST requests are not supported
+2025-12-24 16:45:24.176 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 16:45:24.177 +05:30 [INF] CORS policy execution successful.
+2025-12-24 16:45:24.178 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-24 16:45:24.179 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" completed keep alive response.
+2025-12-24 16:45:24.181 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5085/api/auth/login - 404 0 null 9.6983ms
+2025-12-24 16:45:24.184 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5085/api/auth/login, Response status code: 404
+2025-12-24 16:45:24.186 +05:30 [DBG] Connection id "0HNI2RM9QUHDP", Request id "0HNI2RM9QUHDP:00000009": started reading request body.
+2025-12-24 16:45:24.187 +05:30 [DBG] Connection id "0HNI2RM9QUHDP", Request id "0HNI2RM9QUHDP:00000009": done reading request body.
+2025-12-24 16:45:39.620 +05:30 [INF] Application is shutting down...
+2025-12-24 16:45:39.620 +05:30 [DBG] Hosting stopping
+2025-12-24 16:45:39.626 +05:30 [DBG] Connection id "0HNI2RM9QUHDR" disconnecting.
+2025-12-24 16:45:39.626 +05:30 [DBG] Connection id "0HNI2RM9QUHDO" disconnecting.
+2025-12-24 16:45:39.626 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" disconnecting.
+2025-12-24 16:45:39.626 +05:30 [DBG] Connection id "0HNI2RM9QUHDQ" disconnecting.
+2025-12-24 16:45:39.627 +05:30 [DBG] Connection id "0HNI2RM9QUHDR" stopped.
+2025-12-24 16:45:39.627 +05:30 [DBG] Connection id "0HNI2RM9QUHDO" stopped.
+2025-12-24 16:45:39.628 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" stopped.
+2025-12-24 16:45:39.628 +05:30 [DBG] Connection id "0HNI2RM9QUHDQ" stopped.
+2025-12-24 16:45:39.630 +05:30 [DBG] Connection id "0HNI2RM9QUHDR" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-24 16:45:39.630 +05:30 [DBG] Connection id "0HNI2RM9QUHDO" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-24 16:45:39.631 +05:30 [DBG] Connection id "0HNI2RM9QUHDP" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-24 16:45:39.632 +05:30 [DBG] Connection id "0HNI2RM9QUHDQ" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-24 16:45:39.637 +05:30 [DBG] Hosting stopped
+2025-12-24 17:04:36.005 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-12-24 17:04:36.679 +05:30 [DBG] Entity Framework Core 8.0.0 initialized 'AuthDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.0' with options: None
+2025-12-24 17:04:36.695 +05:30 [DBG] Creating DbConnection.
+2025-12-24 17:04:36.733 +05:30 [DBG] Created DbConnection. (35ms).
+2025-12-24 17:04:36.738 +05:30 [DBG] Opening connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 17:04:36.917 +05:30 [DBG] Opened connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 17:04:36.923 +05:30 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2025-12-24 17:04:36.930 +05:30 [DBG] Created DbCommand for 'ExecuteNonQuery' (5ms).
+2025-12-24 17:04:36.933 +05:30 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (12ms).
+2025-12-24 17:04:36.940 +05:30 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-24 17:04:36.964 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-24 17:04:36.967 +05:30 [DBG] Closing connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 17:04:36.975 +05:30 [DBG] Closed connection to database 'EventTracker_Auth' on server '(local)' (5ms).
+2025-12-24 17:04:36.978 +05:30 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-12-24 17:04:36.980 +05:30 [DBG] Created DbCommand for 'ExecuteScalar' (1ms).
+2025-12-24 17:04:36.981 +05:30 [DBG] Initialized DbCommand for 'ExecuteScalar' (2ms).
+2025-12-24 17:04:36.982 +05:30 [DBG] Opening connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 17:04:36.984 +05:30 [DBG] Opened connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 17:04:36.986 +05:30 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-24 17:04:37.024 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-24 17:04:37.027 +05:30 [DBG] Closing connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 17:04:37.029 +05:30 [DBG] Closed connection to database 'EventTracker_Auth' on server '(local)' (1ms).
+2025-12-24 17:04:37.038 +05:30 [DBG] 'AuthDbContext' disposed.
+2025-12-24 17:04:37.046 +05:30 [DBG] Disposing connection to database 'EventTracker_Auth' on server '(local)'.
+2025-12-24 17:04:37.048 +05:30 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-24 17:04:37.084 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-12-24 17:04:37.118 +05:30 [DBG] Hosting starting
+2025-12-24 17:04:37.129 +05:30 [INF] User profile is available. Using 'C:\Users\w199615\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-24 17:04:37.139 +05:30 [DBG] Reading data from file 'C:\Users\w199615\AppData\Local\ASP.NET\DataProtection-Keys\key-0f9824b6-b006-44d6-96a0-7f00dad5e3f2.xml'.
+2025-12-24 17:04:37.147 +05:30 [DBG] Found key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2}.
+2025-12-24 17:04:37.156 +05:30 [DBG] Considering key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2} with expiration date 2026-03-11 06:25:41Z as default key.
+2025-12-24 17:04:37.161 +05:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-12-24 17:04:37.163 +05:30 [DBG] Decrypting secret element using Windows DPAPI.
+2025-12-24 17:04:37.165 +05:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-12-24 17:04:37.170 +05:30 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-12-24 17:04:37.173 +05:30 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-12-24 17:04:37.175 +05:30 [DBG] Using key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2} as the default key.
+2025-12-24 17:04:37.177 +05:30 [DBG] Key ring with default key {0f9824b6-b006-44d6-96a0-7f00dad5e3f2} was loaded during application startup.
+2025-12-24 17:04:37.222 +05:30 [INF] Now listening on: http://localhost:5085
+2025-12-24 17:04:37.232 +05:30 [DBG] Loaded hosting startup assembly EventTracker.Auth.API
+2025-12-24 17:04:37.235 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-24 17:04:37.236 +05:30 [INF] Hosting environment: Development
+2025-12-24 17:04:37.238 +05:30 [INF] Content root path: C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.API
+2025-12-24 17:04:37.246 +05:30 [DBG] Hosting started
+2025-12-24 17:04:47.187 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" accepted.
+2025-12-24 17:04:47.189 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" started.
+2025-12-24 17:04:47.216 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5085/api/auth/login - null null
+2025-12-24 17:04:47.220 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-12-24 17:04:47.236 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/login'
+2025-12-24 17:04:47.238 +05:30 [DBG] Request matched endpoint '405 HTTP Method Not Supported'
+2025-12-24 17:04:47.249 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 17:04:47.250 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-12-24 17:04:47.252 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 17:04:47.253 +05:30 [INF] CORS policy execution successful.
+2025-12-24 17:04:47.254 +05:30 [DBG] The request is a preflight request.
+2025-12-24 17:04:47.259 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" completed keep alive response.
+2025-12-24 17:04:47.262 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5085/api/auth/login - 204 null null 47.2539ms
+2025-12-24 17:04:47.267 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5085/api/auth/login - application/json 69
+2025-12-24 17:04:47.270 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/login'
+2025-12-24 17:04:47.275 +05:30 [DBG] Endpoint 'EventTracker.Auth.API.Controllers.AuthController.Login (EventTracker.Auth.API)' with route pattern 'api/Auth/login' is valid for the request path '/api/auth/login'
+2025-12-24 17:04:47.277 +05:30 [DBG] Request matched endpoint 'EventTracker.Auth.API.Controllers.AuthController.Login (EventTracker.Auth.API)'
+2025-12-24 17:04:47.279 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 17:04:47.280 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 17:04:47.281 +05:30 [INF] CORS policy execution successful.
+2025-12-24 17:04:47.307 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-24 17:04:47.310 +05:30 [INF] Executing endpoint 'EventTracker.Auth.API.Controllers.AuthController.Login (EventTracker.Auth.API)'
+2025-12-24 17:04:47.323 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(EventTracker.Auth.Application.DTOs.LoginRequestDto) on controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API).
+2025-12-24 17:04:47.327 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-24 17:04:47.330 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-24 17:04:47.332 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-24 17:04:47.334 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-24 17:04:47.336 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-24 17:04:47.339 +05:30 [DBG] Executing controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 17:04:47.343 +05:30 [DBG] Executed controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 17:04:47.347 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto' ...
+2025-12-24 17:04:47.350 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto' using the name '' in request data ...
+2025-12-24 17:04:47.352 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-12-24 17:04:47.364 +05:30 [DBG] Connection id "0HNI2S1OIJOF4", Request id "0HNI2S1OIJOF4:00000002": started reading request body.
+2025-12-24 17:04:47.366 +05:30 [DBG] Connection id "0HNI2S1OIJOF4", Request id "0HNI2S1OIJOF4:00000002": done reading request body.
+2025-12-24 17:04:47.371 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'EventTracker.Auth.Application.DTOs.LoginRequestDto'
+2025-12-24 17:04:47.373 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto'.
+2025-12-24 17:04:47.375 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto'.
+2025-12-24 17:04:47.376 +05:30 [DBG] Attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto' ...
+2025-12-24 17:04:47.382 +05:30 [DBG] Done attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto'.
+2025-12-24 17:04:47.384 +05:30 [INF] Login attempt: harshgaikwad@gmail.com as Admin
+2025-12-24 17:04:47.385 +05:30 [INF] ✅ User authenticated: harshgaikwad@gmail.com as Admin
+2025-12-24 17:04:47.402 +05:30 [INF] ✅ Returning success response for user: harshgaikwad@gmail.com
+2025-12-24 17:04:47.404 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-24 17:04:47.408 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-12-24 17:04:47.409 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-24 17:04:47.410 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-24 17:04:47.412 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-24 17:04:47.414 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`7[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-24 17:04:47.426 +05:30 [INF] Executed action EventTracker.Auth.API.Controllers.AuthController.Login (EventTracker.Auth.API) in 84.7985ms
+2025-12-24 17:04:47.428 +05:30 [INF] Executed endpoint 'EventTracker.Auth.API.Controllers.AuthController.Login (EventTracker.Auth.API)'
+2025-12-24 17:04:47.430 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" completed keep alive response.
+2025-12-24 17:04:47.432 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5085/api/auth/login - 200 null application/json; charset=utf-8 165.0212ms
+2025-12-24 17:05:06.341 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5085/api/auth/logout - null null
+2025-12-24 17:05:06.344 +05:30 [DBG] No candidates found for the request path '/api/auth/logout'
+2025-12-24 17:05:06.346 +05:30 [DBG] Request did not match any endpoints
+2025-12-24 17:05:06.348 +05:30 [DBG] OPTIONS requests are not supported
+2025-12-24 17:05:06.350 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 17:05:06.351 +05:30 [INF] CORS policy execution successful.
+2025-12-24 17:05:06.352 +05:30 [DBG] The request is a preflight request.
+2025-12-24 17:05:06.354 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" completed keep alive response.
+2025-12-24 17:05:06.355 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5085/api/auth/logout - 204 null null 14.6934ms
+2025-12-24 17:05:06.359 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5085/api/auth/logout - null 0
+2025-12-24 17:05:06.363 +05:30 [DBG] No candidates found for the request path '/api/auth/logout'
+2025-12-24 17:05:06.363 +05:30 [DBG] Request did not match any endpoints
+2025-12-24 17:05:06.364 +05:30 [DBG] POST requests are not supported
+2025-12-24 17:05:06.365 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 17:05:06.366 +05:30 [INF] CORS policy execution successful.
+2025-12-24 17:05:06.396 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: '04CkdMYBNl8D0ufQkMC8wM4DSPnwk7QUds8nSe7fOQk'. , KeyId: 
+'. Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'. 
+Exceptions caught:
+ '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-12-24 17:05:06.405 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: '04CkdMYBNl8D0ufQkMC8wM4DSPnwk7QUds8nSe7fOQk'. , KeyId: 
+'. Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'. 
+Exceptions caught:
+ '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2025-12-24 17:05:06.407 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" completed keep alive response.
+2025-12-24 17:05:06.409 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5085/api/auth/logout - 404 0 null 49.7059ms
+2025-12-24 17:05:06.413 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5085/api/auth/logout, Response status code: 404
+2025-12-24 17:05:19.191 +05:30 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5085/api/auth/login - null null
+2025-12-24 17:05:19.249 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/login'
+2025-12-24 17:05:19.250 +05:30 [DBG] Request matched endpoint '405 HTTP Method Not Supported'
+2025-12-24 17:05:19.252 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 17:05:19.253 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 17:05:19.254 +05:30 [INF] CORS policy execution successful.
+2025-12-24 17:05:19.255 +05:30 [DBG] The request is a preflight request.
+2025-12-24 17:05:19.257 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" completed keep alive response.
+2025-12-24 17:05:19.259 +05:30 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5085/api/auth/login - 204 null null 67.9914ms
+2025-12-24 17:05:19.262 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5085/api/auth/login - application/json 71
+2025-12-24 17:05:19.264 +05:30 [DBG] 1 candidate(s) found for the request path '/api/auth/login'
+2025-12-24 17:05:19.265 +05:30 [DBG] Endpoint 'EventTracker.Auth.API.Controllers.AuthController.Login (EventTracker.Auth.API)' with route pattern 'api/Auth/login' is valid for the request path '/api/auth/login'
+2025-12-24 17:05:19.267 +05:30 [DBG] Request matched endpoint 'EventTracker.Auth.API.Controllers.AuthController.Login (EventTracker.Auth.API)'
+2025-12-24 17:05:19.268 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-24 17:05:19.269 +05:30 [DBG] The request has an origin header: 'http://localhost:3000'.
+2025-12-24 17:05:19.270 +05:30 [INF] CORS policy execution successful.
+2025-12-24 17:05:19.273 +05:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-24 17:05:19.274 +05:30 [INF] Executing endpoint 'EventTracker.Auth.API.Controllers.AuthController.Login (EventTracker.Auth.API)'
+2025-12-24 17:05:19.276 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(EventTracker.Auth.Application.DTOs.LoginRequestDto) on controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API).
+2025-12-24 17:05:19.278 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-24 17:05:19.279 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-24 17:05:19.282 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-24 17:05:19.286 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-24 17:05:19.290 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-24 17:05:19.292 +05:30 [DBG] Executing controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 17:05:19.294 +05:30 [DBG] Executed controller factory for controller EventTracker.Auth.API.Controllers.AuthController (EventTracker.Auth.API)
+2025-12-24 17:05:19.296 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto' ...
+2025-12-24 17:05:19.298 +05:30 [DBG] Attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto' using the name '' in request data ...
+2025-12-24 17:05:19.299 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-12-24 17:05:19.303 +05:30 [DBG] Connection id "0HNI2S1OIJOF4", Request id "0HNI2S1OIJOF4:00000006": started reading request body.
+2025-12-24 17:05:19.306 +05:30 [DBG] Connection id "0HNI2S1OIJOF4", Request id "0HNI2S1OIJOF4:00000006": done reading request body.
+2025-12-24 17:05:19.308 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'EventTracker.Auth.Application.DTOs.LoginRequestDto'
+2025-12-24 17:05:19.309 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto'.
+2025-12-24 17:05:19.310 +05:30 [DBG] Done attempting to bind parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto'.
+2025-12-24 17:05:19.311 +05:30 [DBG] Attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto' ...
+2025-12-24 17:05:19.313 +05:30 [DBG] Done attempting to validate the bound parameter 'request' of type 'EventTracker.Auth.Application.DTOs.LoginRequestDto'.
+2025-12-24 17:05:19.314 +05:30 [INF] Login attempt: harshgaikwad@gmail.com as Speaker
+2025-12-24 17:05:19.315 +05:30 [INF] ✅ User authenticated: harshgaikwad@gmail.com as Speaker
+2025-12-24 17:05:19.316 +05:30 [INF] ✅ Returning success response for user: harshgaikwad@gmail.com
+2025-12-24 17:05:19.317 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-24 17:05:19.319 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-12-24 17:05:19.320 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-24 17:05:19.321 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-24 17:05:19.322 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-24 17:05:19.323 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`7[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-24 17:05:19.325 +05:30 [INF] Executed action EventTracker.Auth.API.Controllers.AuthController.Login (EventTracker.Auth.API) in 32.9012ms
+2025-12-24 17:05:19.326 +05:30 [INF] Executed endpoint 'EventTracker.Auth.API.Controllers.AuthController.Login (EventTracker.Auth.API)'
+2025-12-24 17:05:19.327 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" completed keep alive response.
+2025-12-24 17:05:19.328 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5085/api/auth/login - 200 null application/json; charset=utf-8 66.5889ms
+2025-12-24 17:07:01.669 +05:30 [INF] Application is shutting down...
+2025-12-24 17:07:01.670 +05:30 [DBG] Hosting stopping
+2025-12-24 17:07:01.674 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" disconnecting.
+2025-12-24 17:07:01.676 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" stopped.
+2025-12-24 17:07:01.677 +05:30 [DBG] Connection id "0HNI2S1OIJOF4" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-24 17:07:01.681 +05:30 [DBG] Hosting stopped
