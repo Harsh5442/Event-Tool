@@ -36,10 +36,10 @@ const Sidebar: React.FC = () => {
   ];
 
   const navItems = user 
-    ? allNavItems.filter(item => 
-        item.roles.includes(user.role) && canAccessRoute(user.role, item.path)
-      )
-    : [];
+  ? allNavItems.filter(item => 
+      item.roles.includes(user.role)
+    )
+  : [];
 
   const handleLogout = () => {
     logout();

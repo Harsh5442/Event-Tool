@@ -15,3 +15,20 @@ C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Servic
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\refint\EventTracker.Auth.Application.dll
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\EventTracker.Auth.Application.pdb
 C:\Users\w199615\OneDrive - Worldline SA\Projects\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\ref\EventTracker.Auth.Application.dll
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\bin\Debug\net8.0\EventTracker.Auth.Application.deps.json
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\bin\Debug\net8.0\EventTracker.Auth.Application.dll
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\bin\Debug\net8.0\EventTracker.Auth.Application.pdb
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\bin\Debug\net8.0\EventTracker.Auth.Domain.dll
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\bin\Debug\net8.0\EventTracker.Auth.Infrastructure.dll
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\bin\Debug\net8.0\EventTracker.Auth.Domain.pdb
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\bin\Debug\net8.0\EventTracker.Auth.Infrastructure.pdb
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\EventTracker.Auth.Application.csproj.AssemblyReference.cache
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\EventTracker.Auth.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\EventTracker.Auth.Application.AssemblyInfoInputs.cache
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\EventTracker.Auth.Application.AssemblyInfo.cs
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\EventTracker.Auth.Application.csproj.CoreCompileInputs.cache
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\EventTra.CA7C837C.Up2Date
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\EventTracker.Auth.Application.dll
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\refint\EventTracker.Auth.Application.dll
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\EventTracker.Auth.Application.pdb
+C:\Users\w199635\OneDrive - Worldline SA\Desktop\Event Tool\event-tracking-tool\src\Services\EventTracker.Auth\EventTracker.Auth.Application\obj\Debug\net8.0\ref\EventTracker.Auth.Application.dll

@@ -1,44 +1,34 @@
-import React from 'react';
+// src/pages/OrganizerDashboard.tsx
+import React, { useState, useEffect } from 'react';
 import { Calendar, Users, Mic2, TrendingUp, ArrowUpRight, ThumbsUp, MessageSquare } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useAuth } from '../contexts/AuthContext';
+import { fetchEvents, fetchAttendeesForEvent, fetchSessionsForEvent } from '../services/api.service';
+
+interface MyEvent {
+  event_id: number;
+  name: string;
+  status: string;
+  participants: number;
+  speakers: number;
+  date: string;
+  startDate: string;
+  description: string;
+}
 
 const OrganizerDashboard: React.FC = () => {
-  const stats = {
-    eventsCreated: 8,
-    totalParticipants: 1547,
-    totalSpeakers: 24,
-    avgEngagement: 87,
-  };
+  const { user } = useAuth();
+  const [myEvents, setMyEvents] = useState<MyEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const myEvents = [
-    {
-      id: '1',
-      name: 'Tech Summit 2024',
-      status: 'Approved',
-      participants: 450,
-      speakers: 8,
-      engagement: 92,
-      date: 'Jan 15-17, 2024',
-    },
-    {
-      id: '2',
-      name: 'AI Conference',
-      status: 'Pending Approval',
-      participants: 0,
-      speakers: 6,
-      engagement: 0,
-      date: 'Feb 20-22, 2024',
-    },
-    {
-      id: '3',
-      name: 'DevOps Workshop',
-      status: 'Approved',
-      participants: 180,
-      speakers: 4,
-      engagement: 88,
-      date: 'Mar 10-12, 2024',
-    },
-  ];
+  // Mock engagement metrics
+  const engagementMetrics = {
+    participantSatisfaction: 92,
+    speakerRatings: 4.8,
+    sessionAttendance: 87,
+    networkingScore: 85,
+  };
 
   const successfulEvents = [
     { name: 'Cloud Architecture Summit', participants: 520, rating: 4.9, feedback: 'Outstanding!' },
@@ -46,11 +36,74 @@ const OrganizerDashboard: React.FC = () => {
     { name: 'Security Workshop', participants: 390, rating: 4.7, feedback: 'Excellent content' },
   ];
 
-  const engagementMetrics = {
-    participantSatisfaction: 92,
-    speakerRatings: 4.8,
-    sessionAttendance: 87,
-    networkingScore: 85,
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        if (!user?.user_id) return;
+
+        // Fetch all events
+        const allEvents = await fetchEvents();
+
+        // Filter events created by this organizer
+        const organizerEvents = allEvents.filter(e => e.created_by === user.user_id);
+
+        // Enrich events with attendee and session counts
+        const eventsWithDetails = await Promise.all(
+          organizerEvents.map(async (event) => {
+            let participants = 0;
+            let speakers = 0;
+
+            try {
+              const attendees = await fetchAttendeesForEvent(event.event_id);
+              participants = attendees.length;
+            } catch (err) {
+              console.warn(`Could not fetch attendees for event ${event.event_id}`);
+            }
+
+            try {
+              const sessions = await fetchSessionsForEvent(event.event_id);
+              speakers = new Set(sessions.map(s => s.speaker_id)).size;
+            } catch (err) {
+              console.warn(`Could not fetch sessions for event ${event.event_id}`);
+            }
+
+            return {
+              event_id: event.event_id,
+              name: event.name,
+              status: event.status === 'Published' ? 'Approved' : event.status,
+              participants,
+              speakers,
+              date: new Date(event.start_date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              }),
+              startDate: event.start_date,
+              description: event.description,
+            };
+          })
+        );
+
+        setMyEvents(eventsWithDetails);
+      } catch (err) {
+        setError('Failed to load organizer data');
+        console.error('Error:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [user]);
+
+  const stats = {
+    eventsCreated: myEvents.length,
+    totalParticipants: myEvents.reduce((sum, e) => sum + e.participants, 0),
+    totalSpeakers: new Set(myEvents.flatMap(e => e.speakers)).size,
+    avgEngagement: 87,
   };
 
   return (
@@ -143,45 +196,53 @@ const OrganizerDashboard: React.FC = () => {
         {/* My Events */}
         <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
           <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-6">My Events</h3>
-          <div className="space-y-4">
-            {myEvents.map((event, index) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-100">{event.name}</h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{event.date}</p>
+          {loading ? (
+            <p className="text-gray-500 dark:text-gray-400">Loading events...</p>
+          ) : error ? (
+            <p className="text-red-500 dark:text-red-400">{error}</p>
+          ) : myEvents.length === 0 ? (
+            <p className="text-gray-500 dark:text-gray-400">No events created yet</p>
+          ) : (
+            <div className="space-y-4">
+              {myEvents.map((event, index) => (
+                <motion.div
+                  key={event.event_id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-100">{event.name}</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">{event.date}</p>
+                    </div>
+                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                      event.status === 'Approved'
+                        ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                        : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400'
+                    }`}>
+                      {event.status}
+                    </span>
                   </div>
-                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                    event.status === 'Approved'
-                      ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                      : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400'
-                  }`}>
-                    {event.status}
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <p className="text-gray-500 dark:text-gray-400">Participants</p>
-                    <p className="font-semibold text-gray-900 dark:text-gray-100">{event.participants}</p>
+                  <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div>
+                      <p className="text-gray-500 dark:text-gray-400">Participants</p>
+                      <p className="font-semibold text-gray-900 dark:text-gray-100">{event.participants}</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 dark:text-gray-400">Speakers</p>
+                      <p className="font-semibold text-gray-900 dark:text-gray-100">{event.speakers}</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 dark:text-gray-400">Engagement</p>
+                      <p className="font-semibold text-gray-900 dark:text-gray-100">87%</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-gray-500 dark:text-gray-400">Speakers</p>
-                    <p className="font-semibold text-gray-900 dark:text-gray-100">{event.speakers}</p>
-                  </div>
-                  <div>
-                    <p className="text-gray-500 dark:text-gray-400">Engagement</p>
-                    <p className="font-semibold text-gray-900 dark:text-gray-100">{event.engagement || 0}%</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Most Successful Events */}

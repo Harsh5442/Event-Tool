@@ -1,12 +1,29 @@
-import React, { useState } from 'react';
+// src/pages/PublicEventPage.tsx
+import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, MapPin, Users, Mic2, DollarSign, Check, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
+import { fetchEventById, fetchSessionsForEvent, fetchUserById, createAttendee } from '../services/api.service';
+import { formatDate, formatTime } from '../utils/helpers';
+import { EventResponseDto } from '../models/event';
+import { SessionResponseDto } from '../models/session';
+
+interface SessionWithDetails extends SessionResponseDto {
+  speakerName?: string;
+  formattedStartTime?: string;
+  formattedEndTime?: string;
+  day?: number;
+}
 
 const PublicEventPage: React.FC = () => {
   const { eventId } = useParams();
   const [selectedTicket, setSelectedTicket] = useState<'free' | 'paid' | 'vip'>('paid');
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  const [eventData, setEventData] = useState<EventResponseDto | null>(null);
+  const [sessions, setSessions] = useState<SessionWithDetails[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [organizerName, setOrganizerName] = useState('Unknown');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -17,81 +34,96 @@ const PublicEventPage: React.FC = () => {
     specialRequests: '',
   });
 
-  // Mock event data - will come from API based on eventId
-  const eventData = {
-    id: eventId,
-    name: 'Tech Summit 2024',
-    tagline: 'Shaping the Future of Technology',
-    description: 'Join us for three days of inspiring talks, hands-on workshops, and networking opportunities with industry leaders. Explore the latest trends in AI, Cloud Computing, DevOps, and more.',
-    date: 'January 15-17, 2024',
-    startDate: '2024-01-15',
-    endDate: '2024-01-17',
-    time: '9:00 AM - 6:00 PM',
-    location: 'Grand Convention Center, San Francisco',
-    venue: 'Main Conference Hall',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200',
-    totalCapacity: 500,
-    registeredCount: 432,
-    status: 'open',
-    tickets: {
-      free: {
-        price: 0,
-        capacity: 50,
-        remaining: 12,
-        benefits: ['Access to keynote sessions', 'Event materials', 'Networking sessions'],
-      },
-      paid: {
-        price: 149,
-        capacity: 400,
-        remaining: 56,
-        benefits: ['All Free benefits', 'Workshop access', 'Lunch included', 'Certificate of attendance'],
-      },
-      vip: {
-        price: 299,
-        capacity: 50,
-        remaining: 12,
-        benefits: ['All Paid benefits', 'VIP lounge access', 'Priority seating', 'Meet & greet with speakers', 'Exclusive networking dinner'],
-      },
-    },
-    agenda: [
-      {
-        day: 1,
-        date: 'January 15, 2024',
-        sessions: [
-          { time: '09:00 AM', title: 'Opening Keynote: Future of AI', speaker: 'Dr. Sarah Johnson', room: 'Main Hall' },
-          { time: '11:00 AM', title: 'Workshop: React Best Practices', speaker: 'John Doe', room: 'Room A' },
-          { time: '02:00 PM', title: 'Panel: Cloud Architecture Trends', speaker: 'Multiple Speakers', room: 'Room B' },
-        ],
-      },
-      {
-        day: 2,
-        date: 'January 16, 2024',
-        sessions: [
-          { time: '09:00 AM', title: 'Keynote: Microservices at Scale', speaker: 'Emily Davis', room: 'Main Hall' },
-          { time: '11:00 AM', title: 'Workshop: Docker & Kubernetes', speaker: 'Robert Smith', room: 'Room A' },
-          { time: '02:00 PM', title: 'Panel: Security in Modern Apps', speaker: 'Security Experts', room: 'Room B' },
-        ],
-      },
-      {
-        day: 3,
-        date: 'January 17, 2024',
-        sessions: [
-          { time: '09:00 AM', title: 'Workshop: Advanced TypeScript', speaker: 'Lisa Anderson', room: 'Room A' },
-          { time: '11:30 AM', title: 'Closing Keynote: The Road Ahead', speaker: 'Dr. James Wilson', room: 'Main Hall' },
-        ],
-      },
-    ],
-    speakers: [
-      { name: 'Dr. Sarah Johnson', title: 'Chief AI Scientist', company: 'TechCorp', image: '' },
-      { name: 'John Doe', title: 'Senior Frontend Architect', company: 'DevStudio', image: '' },
-      { name: 'Emily Davis', title: 'Cloud Solutions Architect', company: 'CloudTech', image: '' },
-    ],
-  };
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
 
-  const handleSubmitRegistration = (e: React.FormEvent) => {
+        if (!eventId) {
+          setError('Event ID not found');
+          return;
+        }
+
+        // Fetch event details
+        const event = await fetchEventById(eventId);
+        setEventData(event);
+
+        // Fetch organizer details
+        try {
+          const organizer = await fetchUserById(event.created_by);
+          setOrganizerName(organizer.name);
+        } catch (err) {
+          console.warn('Could not fetch organizer details');
+        }
+
+        // Fetch sessions for this event
+        const fetchedSessions = await fetchSessionsForEvent(eventId);
+
+        // Enrich sessions with speaker names and formatted times
+        const sessionsWithDetails = await Promise.all(
+          fetchedSessions.map(async (session) => {
+            let speakerName = 'Unknown Speaker';
+            try {
+              const speaker = await fetchUserById(session.speaker_id);
+              speakerName = speaker.name;
+            } catch (err) {
+              console.warn(`Could not fetch speaker details for speaker ${session.speaker_id}`);
+            }
+
+            // Calculate day number
+            const day = Math.ceil(
+              (new Date(session.start_time).getTime() - new Date(event.start_date).getTime()) / (1000 * 60 * 60 * 24)
+            ) + 1;
+
+            return {
+              ...session,
+              speakerName,
+              formattedStartTime: formatTime(session.start_time, 'hh:mm a'),
+              formattedEndTime: formatTime(session.end_time, 'hh:mm a'),
+              day,
+            };
+          })
+        );
+
+        setSessions(sessionsWithDetails);
+      } catch (err) {
+        setError('Failed to load event details. Please try again later.');
+        console.error('Error loading event:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [eventId]);
+
+  const handleSubmitRegistration = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Registration submitted:', { ...formData, ticketType: selectedTicket });
-    // Handle registration logic
+    try {
+      // TODO: Create attendee record via API when registration endpoint is available
+      // await createAttendee({
+      //   event_id: eventData?.event_id,
+      //   user_id: currentUser.user_id,
+      //   ticket_type: selectedTicket,
+      //   check_in_status: false,
+      // });
+      console.log('Registration submitted:', { ...formData, ticketType: selectedTicket });
+      alert('Registration successful!');
+      setShowRegistrationForm(false);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        organization: '',
+        dietaryRestrictions: '',
+        specialRequests: '',
+      });
+    } catch (err) {
+      alert('Failed to register. Please try again.');
+      console.error('Registration error:', err);
+    }
   };
 
   const getTicketColor = (type: string) => {
@@ -120,15 +152,64 @@ const PublicEventPage: React.FC = () => {
     }
   };
 
+  // Mock ticket data - replace when backend has ticket information
+  const mockTickets = {
+    free: {
+      price: 0,
+      capacity: 50,
+      remaining: 12,
+      benefits: ['Access to keynote sessions', 'Event materials', 'Networking sessions'],
+    },
+    paid: {
+      price: 149,
+      capacity: 400,
+      remaining: 56,
+      benefits: ['All Free benefits', 'Workshop access', 'Lunch included', 'Certificate of attendance'],
+    },
+    vip: {
+      price: 299,
+      capacity: 50,
+      remaining: 12,
+      benefits: ['All Paid benefits', 'VIP lounge access', 'Priority seating', 'Meet & greet with speakers', 'Exclusive networking dinner'],
+    },
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg text-gray-600 dark:text-gray-400">Loading event details...</p>
+      </div>
+    );
+  }
+
+  if (error || !eventData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg text-red-600 dark:text-red-400">{error || 'Event not found'}</p>
+      </div>
+    );
+  }
+
+  const registeredCount = Math.floor(eventData.capacity * 0.86); // Mock: ~86% capacity
+  const totalDays = Math.ceil(
+    (new Date(eventData.end_date).getTime() - new Date(eventData.start_date).getTime()) / (1000 * 60 * 60 * 24)
+  ) + 1;
+
+  // Group sessions by day
+  const sessionsByDay = sessions.reduce((acc, session) => {
+    if (!acc[session.day || 1]) {
+      acc[session.day || 1] = [];
+    }
+    acc[session.day || 1].push(session);
+    return acc;
+  }, {} as Record<number, SessionWithDetails[]>);
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Hero Section */}
-      <div className="relative h-96 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${eventData.image})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+      <div className="relative h-96 overflow-hidden bg-gradient-to-r from-primary-600 to-accent-600">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-pattern"></div>
         </div>
         <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
           <div className="text-white">
@@ -143,9 +224,9 @@ const PublicEventPage: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-2xl mb-6 text-gray-200"
+              className="text-2xl mb-6 text-gray-100"
             >
-              {eventData.tagline}
+              {eventData.description}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -155,15 +236,15 @@ const PublicEventPage: React.FC = () => {
             >
               <div className="flex items-center space-x-2">
                 <Calendar className="w-6 h-6" />
-                <span>{eventData.date}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Clock className="w-6 h-6" />
-                <span>{eventData.time}</span>
+                <span>{formatDate(eventData.start_date, 'MMM dd')} - {formatDate(eventData.end_date, 'MMM dd, yyyy')}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="w-6 h-6" />
-                <span>{eventData.location}</span>
+                <span>{eventData.venue}</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Users className="w-6 h-6" />
+                <span>{eventData.capacity} capacity</span>
               </div>
             </motion.div>
           </div>
@@ -182,73 +263,68 @@ const PublicEventPage: React.FC = () => {
               className="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-200 dark:border-gray-800"
             >
               <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">About This Event</h2>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
                 {eventData.description}
               </p>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Organizer</p>
+                  <p className="font-semibold text-gray-900 dark:text-gray-100">{organizerName}</p>
+                </div>
+                <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Status</p>
+                  <p className="font-semibold text-green-600 dark:text-green-400">{eventData.status}</p>
+                </div>
+                <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Duration</p>
+                  <p className="font-semibold text-gray-900 dark:text-gray-100">{totalDays} days</p>
+                </div>
+              </div>
             </motion.div>
 
             {/* Agenda */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-200 dark:border-gray-800"
-            >
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Event Agenda</h2>
-              <div className="space-y-6">
-                {eventData.agenda.map((day) => (
-                  <div key={day.day}>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                      Day {day.day} - {day.date}
-                    </h3>
-                    <div className="space-y-3">
-                      {day.sessions.map((session, idx) => (
-                        <div key={idx} className="flex space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                          <div className="flex-shrink-0 w-24 text-sm font-medium text-primary-600 dark:text-primary-400">
-                            {session.time}
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900 dark:text-gray-100">{session.title}</h4>
-                            <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400 mt-1">
-                              <span className="flex items-center">
-                                <Mic2 className="w-4 h-4 mr-1" />
-                                {session.speaker}
-                              </span>
-                              <span className="flex items-center">
-                                <MapPin className="w-4 h-4 mr-1" />
-                                {session.room}
-                              </span>
-                            </div>
-                          </div>
+            {sessions.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-200 dark:border-gray-800"
+              >
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Event Schedule</h2>
+                <div className="space-y-6">
+                  {Object.entries(sessionsByDay)
+                    .sort(([dayA], [dayB]) => Number(dayA) - Number(dayB))
+                    .map(([day, daySessions]) => (
+                      <div key={day}>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                          Day {day}
+                        </h3>
+                        <div className="space-y-3">
+                          {daySessions
+                            .sort((a, b) => a.start_time.localeCompare(b.start_time))
+                            .map((session) => (
+                              <div key={session.session_id} className="flex space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow">
+                                <div className="flex-shrink-0 w-24 text-sm font-medium text-primary-600 dark:text-primary-400">
+                                  {session.formattedStartTime}
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="font-semibold text-gray-900 dark:text-gray-100">{session.title}</h4>
+                                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{session.description}</p>
+                                  <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400 mt-2">
+                                    <span className="flex items-center">
+                                      <Mic2 className="w-4 h-4 mr-1" />
+                                      {session.speakerName}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Speakers */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-200 dark:border-gray-800"
-            >
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Featured Speakers</h2>
-              <div className="grid md:grid-cols-3 gap-6">
-                {eventData.speakers.map((speaker, idx) => (
-                  <div key={idx} className="text-center">
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">
-                      {speaker.name.charAt(0)}
-                    </div>
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-100">{speaker.name}</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{speaker.title}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-500">{speaker.company}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+                      </div>
+                    ))}
+                </div>
+              </motion.div>
+            )}
           </div>
 
           {/* Right Column - Registration */}
@@ -266,20 +342,20 @@ const PublicEventPage: React.FC = () => {
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm text-gray-600 dark:text-gray-400">Availability</span>
                     <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                      {eventData.totalCapacity - eventData.registeredCount} spots left
+                      {eventData.capacity - registeredCount} spots left
                     </span>
                   </div>
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                     <div
                       className="bg-gradient-to-r from-primary-500 to-accent-500 h-2 rounded-full"
-                      style={{ width: `${(eventData.registeredCount / eventData.totalCapacity) * 100}%` }}
+                      style={{ width: `${(registeredCount / eventData.capacity) * 100}%` }}
                     />
                   </div>
                 </div>
 
                 {/* Ticket Selection */}
                 <div className="space-y-4 mb-6">
-                  {Object.entries(eventData.tickets).map(([type, details]) => (
+                  {Object.entries(mockTickets).map(([type, details]) => (
                     <button
                       key={type}
                       onClick={() => setSelectedTicket(type as any)}
@@ -369,12 +445,12 @@ const PublicEventPage: React.FC = () => {
                         className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-gray-900 dark:text-gray-100 text-sm"
                       />
 
-                      {eventData.tickets[selectedTicket].price > 0 && (
+                      {mockTickets[selectedTicket].price > 0 && (
                         <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
                           <div className="flex items-center justify-between mb-2">
                             <span className="font-semibold text-gray-900 dark:text-gray-100">Payment</span>
                             <span className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                              ${eventData.tickets[selectedTicket].price}
+                              ${mockTickets[selectedTicket].price}
                             </span>
                           </div>
                           <button

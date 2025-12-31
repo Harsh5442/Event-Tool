@@ -24,10 +24,9 @@ namespace EventManagementSystem.Data
             if (!optionsBuilder.IsConfigured)
             {
                 // This shouldn't happen but helps with debugging
-                optionsBuilder.UseSqlServer("Data Source=WL-GZ5M7C3;Initial Catalog=EventManagementDB;Integrated Security=True;Pooling=False;Connect Timeout=30;Encrypt=False;Application Name=vscode-mssql;Application Intent=ReadWrite;Command Timeout=30");
+                optionsBuilder.UseSqlServer("Data Source=WL-F2KM7C3\\SQLEXPRESS;Initial Catalog=EventManagementDB;Integrated Security=True;Pooling=False;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Name=vscode-mssql;Application Intent=ReadWrite;Command Timeout=30");
             }
-
-            // Enable detailed logging
+           
             optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
             optionsBuilder.EnableDetailedErrors();

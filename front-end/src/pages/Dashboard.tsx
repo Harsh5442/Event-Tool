@@ -1,66 +1,126 @@
-import React from 'react';
+// src/pages/Dashboard.tsx
+import React, { useState, useEffect } from 'react';
 import { Calendar, Users, Mic2, TrendingUp, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { fetchEvents, fetchAllAttendees, fetchAllSessions } from '../services/api.service';
+import { formatDate } from '../utils/helpers';
+
+interface DashboardStats {
+  totalEvents: number;
+  totalAttendees: number;
+  totalSessions: number;
+  publishedEvents: number;
+}
 
 const Dashboard: React.FC = () => {
-  const stats = [
+  const [stats, setStats] = useState<DashboardStats>({
+    totalEvents: 0,
+    totalAttendees: 0,
+    totalSessions: 0,
+    publishedEvents: 0,
+  });
+  const [upcomingEvents, setUpcomingEvents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const [events, attendees, sessions] = await Promise.all([
+          fetchEvents(),
+          fetchAllAttendees(),
+          fetchAllSessions(),
+        ]);
+
+        // Calculate stats
+        const publishedCount = events.filter(e => e.status === 'Published').length;
+        setStats({
+          totalEvents: events.length,
+          totalAttendees: attendees.length,
+          totalSessions: sessions.length,
+          publishedEvents: publishedCount,
+        });
+
+        // Get upcoming events (sort by start_date)
+        const upcoming = events
+          .sort((a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime())
+          .slice(0, 5)
+          .map(event => {
+            const eventAttendees = attendees.filter(a => a.event_id === event.event_id);
+            return {
+              id: event.event_id,
+              name: event.name,
+              date: formatDate(event.start_date, 'MMM dd, yyyy'),
+              participants: eventAttendees.length,
+              status: event.status === 'Published' ? 'upcoming' : 'planning',
+            };
+          });
+
+        setUpcomingEvents(upcoming);
+      } catch (err) {
+        setError('Failed to load dashboard data');
+        console.error('Error loading dashboard:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  const statsConfig = [
     {
       label: 'Total Events',
-      value: '24',
+      value: stats.totalEvents,
       change: '+12%',
-      trend: 'up',
+      trend: 'up' as const,
       icon: Calendar,
       color: 'from-blue-500 to-cyan-500',
     },
     {
       label: 'Participants',
-      value: '1,234',
+      value: stats.totalAttendees,
       change: '+23%',
-      trend: 'up',
+      trend: 'up' as const,
       icon: Users,
       color: 'from-purple-500 to-pink-500',
     },
     {
-      label: 'Speakers',
-      value: '56',
+      label: 'Sessions',
+      value: stats.totalSessions,
       change: '+8%',
-      trend: 'up',
+      trend: 'up' as const,
       icon: Mic2,
       color: 'from-green-500 to-teal-500',
     },
     {
-      label: 'Engagement',
-      value: '87%',
+      label: 'Published Events',
+      value: stats.publishedEvents,
       change: '-3%',
-      trend: 'down',
+      trend: 'down' as const,
       icon: TrendingUp,
       color: 'from-orange-500 to-red-500',
     },
   ];
 
-  const upcomingEvents = [
-    {
-      id: 1,
-      name: 'Tech Summit 2024',
-      date: 'Jan 15-17, 2024',
-      participants: 450,
-      status: 'upcoming',
-    },
-    {
-      id: 2,
-      name: 'AI Conference',
-      date: 'Feb 20-22, 2024',
-      participants: 320,
-      status: 'upcoming',
-    },
-    {
-      id: 3,
-      name: 'DevOps Workshop',
-      date: 'Mar 10-12, 2024',
-      participants: 180,
-      status: 'planning',
-    },
-  ];
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-lg text-gray-600 dark:text-gray-400">Loading dashboard...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-lg text-red-600 dark:text-red-400">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -72,7 +132,7 @@ const Dashboard: React.FC = () => {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
+        {statsConfig.map((stat, index) => (
           <motion.div
             key={stat.label}
             initial={{ opacity: 0, y: 20 }}
@@ -110,35 +170,41 @@ const Dashboard: React.FC = () => {
           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">Upcoming Events</h2>
         </div>
         <div className="p-6 space-y-4">
-          {upcomingEvents.map((event) => (
-            <div
-              key={event.id}
-              className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
-            >
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
-                  <Calendar className="w-6 h-6 text-white" />
+          {upcomingEvents.length === 0 ? (
+            <p className="text-gray-500 dark:text-gray-400">No upcoming events</p>
+          ) : (
+            upcomingEvents.map((event) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
+              >
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+                    <Calendar className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100">{event.name}</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{event.date}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-gray-100">{event.name}</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{event.date}</p>
+                <div className="flex items-center space-x-6">
+                  <div className="text-right">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Participants</p>
+                    <p className="font-semibold text-gray-900 dark:text-gray-100">{event.participants}</p>
+                  </div>
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                    event.status === 'upcoming' 
+                      ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                      : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400'
+                  }`}>
+                    {event.status}
+                  </span>
                 </div>
-              </div>
-              <div className="flex items-center space-x-6">
-                <div className="text-right">
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Participants</p>
-                  <p className="font-semibold text-gray-900 dark:text-gray-100">{event.participants}</p>
-                </div>
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                  event.status === 'upcoming' 
-                    ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                    : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400'
-                }`}>
-                  {event.status}
-                </span>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            ))
+          )}
         </div>
       </div>
     </div>

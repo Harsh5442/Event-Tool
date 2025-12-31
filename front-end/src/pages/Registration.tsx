@@ -1,307 +1,295 @@
-import React, { useState } from 'react';
-import { Search, Filter, Download, CheckCircle, XCircle, Clock, DollarSign } from 'lucide-react';
+// src/pages/Registration.tsx
+import React, { useState, useEffect } from 'react';
+import { Search, Filter, CheckCircle, XCircle, Calendar, Users, Mail, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useAuth } from '../contexts/AuthContext';
-import { getRolePermissions } from '../utils/permissions';
+import { fetchAllAttendees, fetchAttendeesForEvent, fetchUserById, fetchEvents, checkInAttendee } from '../services/api.service';
+import { formatDate } from '../utils/helpers';
+import { AttendeeResponseDto } from '../models/attendee';
+import { EventResponseDto } from '../models/event';
+import { UserResponseDto } from '../models/user';
 
-interface Registration {
-  id: string;
-  participantName: string;
-  email: string;
-  eventName: string;
-  ticketType: 'Free' | 'Paid' | 'VIP';
-  amount: number;
-  status: 'Pending' | 'Approved' | 'Rejected' | 'Paid';
-  registrationDate: string;
+interface AttendeeWithDetails extends AttendeeResponseDto {
+  name?: string;
+  email?: string;
+  phone?: string;
+  eventName?: string;
 }
 
 const Registration: React.FC = () => {
-  const { user } = useAuth();
-  const permissions = user ? getRolePermissions(user.role) : null;
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterStatus, setFilterStatus] = useState<string>('All');
-  const [filterTicketType, setFilterTicketType] = useState<string>('All');
+  const [filterCheckIn, setFilterCheckIn] = useState<string>('All');
+  const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
+  const [attendees, setAttendees] = useState<AttendeeWithDetails[]>([]);
+  const [events, setEvents] = useState<EventResponseDto[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const registrations: Registration[] = [
-    {
-      id: '1',
-      participantName: 'John Smith',
-      email: 'john@example.com',
-      eventName: 'Tech Summit 2024',
-      ticketType: 'VIP',
-      amount: 299,
-      status: 'Pending',
-      registrationDate: '2024-01-10',
-    },
-    {
-      id: '2',
-      participantName: 'Emma Wilson',
-      email: 'emma@example.com',
-      eventName: 'Tech Summit 2024',
-      ticketType: 'Paid',
-      amount: 149,
-      status: 'Approved',
-      registrationDate: '2024-01-11',
-    },
-    {
-      id: '3',
-      participantName: 'Michael Brown',
-      email: 'michael@example.com',
-      eventName: 'AI Conference',
-      ticketType: 'Free',
-      amount: 0,
-      status: 'Approved',
-      registrationDate: '2024-01-12',
-    },
-    {
-      id: '4',
-      participantName: 'Sarah Davis',
-      email: 'sarah@example.com',
-      eventName: 'DevOps Workshop',
-      ticketType: 'Paid',
-      amount: 99,
-      status: 'Paid',
-      registrationDate: '2024-01-13',
-    },
-  ];
+  const checkInFilters = ['All', 'Checked In', 'Pending'];
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Approved':
-      case 'Paid':
-        return 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400';
-      case 'Pending':
-        return 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400';
-      case 'Rejected':
-        return 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400';
-      default:
-        return 'bg-gray-100 dark:bg-gray-900/30 text-gray-700 dark:text-gray-400';
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        // Fetch events
+        const fetchedEvents = await fetchEvents();
+        setEvents(fetchedEvents);
+
+        if (fetchedEvents.length > 0) {
+          setSelectedEventId(fetchedEvents[0].event_id);
+        }
+      } catch (err) {
+        setError('Failed to load events. Please try again later.');
+        console.error('Error loading events:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  // Fetch attendees when selected event changes
+  useEffect(() => {
+    const loadAttendees = async () => {
+      if (!selectedEventId) return;
+
+      setLoading(true);
+      setError(null);
+      try {
+        const fetchedAttendees = await fetchAttendeesForEvent(selectedEventId);
+
+        // Enrich attendees with user details
+        const attendeesWithDetails = await Promise.all(
+          fetchedAttendees.map(async (attendee) => {
+            let name = 'Unknown';
+            let email = 'unknown@example.com';
+            let phone = '';
+
+            try {
+              const user = await fetchUserById(attendee.user_id);
+              name = user.name;
+              email = user.email;
+              phone = user.phone || '';
+            } catch (err) {
+              console.warn(`Could not fetch user details for user ${attendee.user_id}`);
+            }
+
+            // Get event name
+            const event = events.find(e => e.event_id === attendee.event_id);
+            const eventName = event?.name || 'Unknown Event';
+
+            return {
+              ...attendee,
+              name,
+              email,
+              phone,
+              eventName,
+            };
+          })
+        );
+
+        setAttendees(attendeesWithDetails);
+      } catch (err) {
+        setError('Failed to load attendees. Please try again later.');
+        console.error('Error loading attendees:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadAttendees();
+  }, [selectedEventId, events]);
+
+  const handleCheckIn = async (attendeeId: number) => {
+    try {
+      await checkInAttendee(attendeeId);
+      // Update local state
+      setAttendees(prev =>
+        prev.map(a => a.attendee_id === attendeeId ? { ...a, check_in_status: true } : a)
+      );
+      alert('Check-in successful!');
+    } catch (err) {
+      alert('Failed to check in attendee.');
+      console.error('Error checking in attendee:', err);
     }
   };
 
-  const getTicketTypeColor = (type: string) => {
-    switch (type) {
-      case 'VIP':
-        return 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400';
-      case 'Paid':
-        return 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400';
-      case 'Free':
-        return 'bg-gray-100 dark:bg-gray-900/30 text-gray-700 dark:text-gray-400';
-      default:
-        return 'bg-gray-100 dark:bg-gray-900/30 text-gray-700 dark:text-gray-400';
-    }
-  };
-
-  const handleApprove = (id: string) => {
-    console.log('Approve registration:', id);
-  };
-
-  const handleReject = (id: string) => {
-    console.log('Reject registration:', id);
-  };
-
-  const filteredRegistrations = registrations.filter(reg => {
-    const matchesSearch = reg.participantName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         reg.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         reg.eventName.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = filterStatus === 'All' || reg.status === filterStatus;
-    const matchesTicketType = filterTicketType === 'All' || reg.ticketType === filterTicketType;
-    return matchesSearch && matchesStatus && matchesTicketType;
+  const filteredAttendees = attendees.filter(attendee => {
+    const matchesSearch = attendee.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         attendee.email?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCheckIn = filterCheckIn === 'All' ||
+                          (filterCheckIn === 'Checked In' && attendee.check_in_status) ||
+                          (filterCheckIn === 'Pending' && !attendee.check_in_status);
+    return matchesSearch && matchesCheckIn;
   });
 
   const stats = {
-    total: registrations.length,
-    pending: registrations.filter(r => r.status === 'Pending').length,
-    approved: registrations.filter(r => r.status === 'Approved' || r.status === 'Paid').length,
-    revenue: registrations.filter(r => r.status === 'Paid').reduce((sum, r) => sum + r.amount, 0),
+    total: attendees.length,
+    checkedIn: attendees.filter(a => a.check_in_status).length,
+    pending: attendees.filter(a => !a.check_in_status).length,
   };
 
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Registration Console</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Manage attendee registrations and tickets</p>
-        </div>
-        <button className="flex items-center space-x-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-all duration-200">
-          <Download className="w-5 h-5" />
-          <span className="font-medium">Export Data</span>
-        </button>
+      <div>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Attendee Registration</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-1">Manage event attendees and check-ins</p>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {/* Event Selection */}
+      <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Select Event</label>
+        <select
+          value={selectedEventId || ''}
+          onChange={(e) => setSelectedEventId(Number(e.target.value))}
+          className="w-full px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-gray-900 dark:text-gray-100"
+        >
+          <option value="">Select an event...</option>
+          {events.map(event => (
+            <option key={event.event_id} value={event.event_id}>
+              {event.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Total Registrations</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100 mt-2">{stats.total}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Total Attendees</p>
+              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{stats.total}</p>
             </div>
-            <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-              <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-            </div>
+            <Users className="w-12 h-12 text-primary-500 opacity-20" />
           </div>
         </div>
-
         <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Pending Approval</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100 mt-2">{stats.pending}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Checked In</p>
+              <p className="text-3xl font-bold text-green-600">{stats.checkedIn}</p>
             </div>
-            <div className="w-12 h-12 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center">
-              <Clock className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
-            </div>
+            <CheckCircle className="w-12 h-12 text-green-500 opacity-20" />
           </div>
         </div>
-
         <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Approved</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100 mt-2">{stats.approved}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Pending</p>
+              <p className="text-3xl font-bold text-yellow-600">{stats.pending}</p>
             </div>
-            <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-              <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Revenue</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100 mt-2">${stats.revenue}</p>
-            </div>
-            <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-              <DollarSign className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-            </div>
+            <XCircle className="w-12 h-12 text-yellow-500 opacity-20" />
           </div>
         </div>
       </div>
 
       {/* Filters */}
       <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
-        <div className="grid md:grid-cols-3 gap-4">
-          {/* Search */}
+        <div className="grid md:grid-cols-2 gap-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
-              placeholder="Search registrations..."
+              placeholder="Search attendees..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none transition-all duration-200 text-gray-900 dark:text-gray-100"
+              className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-gray-900 dark:text-gray-100"
             />
           </div>
 
-          {/* Status Filter */}
           <div className="relative">
             <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             <select
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none transition-all duration-200 text-gray-900 dark:text-gray-100"
+              value={filterCheckIn}
+              onChange={(e) => setFilterCheckIn(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-gray-900 dark:text-gray-100"
             >
-              <option>All Status</option>
-              <option>Pending</option>
-              <option>Approved</option>
-              <option>Rejected</option>
-              <option>Paid</option>
-            </select>
-          </div>
-
-          {/* Ticket Type Filter */}
-          <div className="relative">
-            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <select
-              value={filterTicketType}
-              onChange={(e) => setFilterTicketType(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none transition-all duration-200 text-gray-900 dark:text-gray-100"
-            >
-              <option>All Tickets</option>
-              <option>Free</option>
-              <option>Paid</option>
-              <option>VIP</option>
+              {checkInFilters.map((filter) => (
+                <option key={filter} value={filter}>
+                  {filter}
+                </option>
+              ))}
             </select>
           </div>
         </div>
       </div>
 
-      {/* Registrations Table */}
+      {/* Attendees Table */}
       <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Participant</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Event</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Attendee</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Email</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Ticket Type</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Amount</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Status</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Date</th>
-                {permissions?.canApproveRegistrations && (
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-gray-100">Actions</th>
-                )}
+                <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900 dark:text-gray-100">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-              {filteredRegistrations.map((registration, index) => (
+              {loading && (
+                <tr>
+                  <td colSpan={5} className="text-center py-10 text-gray-500 dark:text-gray-400">Loading attendees...</td>
+                </tr>
+              )}
+              {error && (
+                <tr>
+                  <td colSpan={5} className="text-center py-10 text-red-500 dark:text-red-400">{error}</td>
+                </tr>
+              )}
+              {!loading && !error && filteredAttendees.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="text-center py-10 text-gray-500 dark:text-gray-400">No attendees found.</td>
+                </tr>
+              )}
+              {!loading && !error && filteredAttendees.map((attendee, index) => (
                 <motion.tr
-                  key={registration.id}
+                  key={attendee.attendee_id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
                   className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
                 >
                   <td className="px-6 py-4">
-                    <div>
-                      <div className="font-medium text-gray-900 dark:text-gray-100">{registration.participantName}</div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">{registration.email}</div>
+                    <div className="font-medium text-gray-900 dark:text-gray-100">{attendee.name}</div>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">{attendee.email}</td>
+                  <td className="px-6 py-4">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
+                      {attendee.ticket_type}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center space-x-2">
+                      {attendee.check_in_status ? (
+                        <>
+                          <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
+                          <span className="text-sm text-green-600 dark:text-green-400">Checked In</span>
+                        </>
+                      ) : (
+                        <>
+                          <XCircle className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
+                          <span className="text-sm text-yellow-600 dark:text-yellow-400">Pending</span>
+                        </>
+                      )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-gray-900 dark:text-gray-100">{registration.eventName}</td>
                   <td className="px-6 py-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getTicketTypeColor(registration.ticketType)}`}>
-                      {registration.ticketType}
-                    </span>
+                    <div className="flex items-center justify-end">
+                      {!attendee.check_in_status && (
+                        <button
+                          onClick={() => handleCheckIn(attendee.attendee_id)}
+                          className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition-colors duration-200"
+                        >
+                          Check In
+                        </button>
+                      )}
+                    </div>
                   </td>
-                  <td className="px-6 py-4 text-gray-900 dark:text-gray-100">
-                    {registration.amount === 0 ? 'Free' : `$${registration.amount}`}
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(registration.status)}`}>
-                      {registration.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">{registration.registrationDate}</td>
-                  {permissions?.canApproveRegistrations && (
-                    <td className="px-6 py-4">
-                      <div className="flex items-center justify-end space-x-2">
-                        {registration.status === 'Pending' && (
-                          <>
-                            <button
-                              onClick={() => handleApprove(registration.id)}
-                              className="p-2 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-colors duration-200"
-                              title="Approve"
-                            >
-                              <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
-                            </button>
-                            <button
-                              onClick={() => handleReject(registration.id)}
-                              className="p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors duration-200"
-                              title="Reject"
-                            >
-                              <XCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
-                            </button>
-                          </>
-                        )}
-                      </div>
-                    </td>
-                  )}
                 </motion.tr>
               ))}
             </tbody>

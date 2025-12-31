@@ -1,121 +1,119 @@
+// src/utils/permissions.ts
+
 import { UserRole } from '../contexts/AuthContext';
 
-export interface Permission {
+export interface UserPermissions {
+  // Event permissions
   canCreateEvent: boolean;
   canEditEvent: boolean;
   canDeleteEvent: boolean;
+  canApproveEvent: boolean;
+  canViewAllEvents: boolean;
+
+  // Session permissions
+  canCreateSession: boolean;
+  canEditSession: boolean;
+  canDeleteSession: boolean;
+
+  // Speaker permissions
   canManageSpeakers: boolean;
-  canManageParticipants: boolean;
-  canSendCommunications: boolean;
-  canViewAnalytics: boolean;
+
+  // User permissions
+  canManageUsers: boolean;
   canAccessAdminConsole: boolean;
-  canDragDropSessions: boolean;
-  canApproveRegistrations: boolean;
-  canApproveEvents: boolean;
-  canEditSpeakerDetails: boolean;
-  canSaveEvents: boolean;
-  canRegisterForEvents: boolean;
-  canCheckIn: boolean;
-  canAcceptRejectAllocations: boolean;
+
+  // Analytics
+  canViewAnalytics: boolean;
+
+  // Registration
+  canManageRegistration: boolean;
+  canCheckInAttendees: boolean;
 }
 
-export const getRolePermissions = (role: UserRole): Permission => {
-  switch (role) {
-    case 'Admin':
-      return {
-        canCreateEvent: true,
-        canEditEvent: true,
-        canDeleteEvent: true,
-        canManageSpeakers: true,
-        canManageParticipants: true,
-        canSendCommunications: true,
-        canViewAnalytics: true,
-        canAccessAdminConsole: true,
-        canDragDropSessions: true,
-        canApproveRegistrations: true,
-        canApproveEvents: true,
-        canEditSpeakerDetails: true,
-        canSaveEvents: false,
-        canRegisterForEvents: false,
-        canCheckIn: true,
-        canAcceptRejectAllocations: false,
-      };
-    case 'Organizer':
-      return {
-        canCreateEvent: true,
-        canEditEvent: true,
-        canDeleteEvent: true,
-        canManageSpeakers: false, // Can only view and allocate
-        canManageParticipants: true,
-        canSendCommunications: true,
-        canViewAnalytics: true,
-        canAccessAdminConsole: false,
-        canDragDropSessions: true,
-        canApproveRegistrations: false,
-        canApproveEvents: false,
-        canEditSpeakerDetails: false, // Cannot edit speaker details
-        canSaveEvents: false,
-        canRegisterForEvents: false,
-        canCheckIn: true,
-        canAcceptRejectAllocations: false,
-      };
-    case 'Speaker':
-      return {
-        canCreateEvent: false,
-        canEditEvent: false,
-        canDeleteEvent: false,
-        canManageSpeakers: false,
-        canManageParticipants: false,
-        canSendCommunications: false,
-        canViewAnalytics: false,
-        canAccessAdminConsole: false,
-        canDragDropSessions: false,
-        canApproveRegistrations: false,
-        canApproveEvents: false,
-        canEditSpeakerDetails: false,
-        canSaveEvents: false,
-        canRegisterForEvents: false,
-        canCheckIn: false,
-        canAcceptRejectAllocations: true, // Can accept/reject allocations
-      };
-    case 'Participant':
-      return {
-        canCreateEvent: false,
-        canEditEvent: false,
-        canDeleteEvent: false,
-        canManageSpeakers: false,
-        canManageParticipants: false,
-        canSendCommunications: false,
-        canViewAnalytics: false,
-        canAccessAdminConsole: false,
-        canDragDropSessions: false,
-        canApproveRegistrations: false,
-        canApproveEvents: false,
-        canEditSpeakerDetails: false,
-        canSaveEvents: true, // Can bookmark events
-        canRegisterForEvents: true,
-        canCheckIn: true, // Self check-in via QR
-        canAcceptRejectAllocations: false,
-      };
-  }
-};
-
-export const canAccessRoute = (role: UserRole, route: string): boolean => {
-  const permissions = getRolePermissions(role);
-
-  const routePermissions: { [key: string]: boolean } = {
-    '/home': role === 'Participant', // Only participants
-    '/dashboard': role !== 'Participant', // All except participants
-    '/events': true,
-    '/profile': true,
-    '/speakers': permissions.canManageSpeakers || role === 'Speaker' || role === 'Admin' || role === 'Organizer',
-    '/participants': permissions.canManageParticipants,
-    '/communications': permissions.canSendCommunications,
-    '/analytics': permissions.canViewAnalytics,
-    '/settings': permissions.canAccessAdminConsole,
-    '/schedule': true,
-    '/registration': permissions.canManageParticipants || role === 'Admin',
+export const getRolePermissions = (role: UserRole): UserPermissions => {
+  const permissions: Record<UserRole, UserPermissions> = {
+    Admin: {
+      canCreateEvent: true,
+      canEditEvent: true,
+      canDeleteEvent: true,
+      canApproveEvent: true,
+      canViewAllEvents: true,
+      canCreateSession: true,
+      canEditSession: true,
+      canDeleteSession: true,
+      canManageSpeakers: true,
+      canManageUsers: true,
+      canAccessAdminConsole: true,
+      canViewAnalytics: true,
+      canManageRegistration: true,
+      canCheckInAttendees: true,
+    },
+    Organizer: {
+      canCreateEvent: true,
+      canEditEvent: true,
+      canDeleteEvent: true,
+      canApproveEvent: false,
+      canViewAllEvents: false,
+      canCreateSession: true,
+      canEditSession: true,
+      canDeleteSession: true,
+      canManageSpeakers: true,
+      canManageUsers: false,
+      canAccessAdminConsole: false,
+      canViewAnalytics: true,
+      canManageRegistration: true,
+      canCheckInAttendees: true,
+    },
+    Speaker: {
+      canCreateEvent: false,
+      canEditEvent: false,
+      canDeleteEvent: false,
+      canApproveEvent: false,
+      canViewAllEvents: false,
+      canCreateSession: false,
+      canEditSession: false,
+      canDeleteSession: false,
+      canManageSpeakers: false,
+      canManageUsers: false,
+      canAccessAdminConsole: false,
+      canViewAnalytics: false,
+      canManageRegistration: false,
+      canCheckInAttendees: false,
+    },
+    Participant: {
+      canCreateEvent: false,
+      canEditEvent: false,
+      canDeleteEvent: false,
+      canApproveEvent: false,
+      canViewAllEvents: false,
+      canCreateSession: false,
+      canEditSession: false,
+      canDeleteSession: false,
+      canManageSpeakers: false,
+      canManageUsers: false,
+      canAccessAdminConsole: false,
+      canViewAnalytics: false,
+      canManageRegistration: false,
+      canCheckInAttendees: false,
+    },
   };
 
-  return routePermissions[route] ?? false;
+  return permissions[role];
+};
+
+export const canAccessRoute = (userRole: UserRole | undefined, requiredRole: UserRole | UserRole[]): boolean => {
+  if (!userRole) return false;
+
+  if (Array.isArray(requiredRole)) {
+    return requiredRole.includes(userRole);
+  }
+
+  const roleHierarchy: Record<UserRole, number> = {
+    Admin: 4,
+    Organizer: 3,
+    Speaker: 2,
+    Participant: 1,
+  };
+
+  return roleHierarchy[userRole] >= roleHierarchy[requiredRole];
 };

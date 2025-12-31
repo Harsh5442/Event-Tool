@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj": {}
+    "C:\\Users\\w199635\\OneDrive - Worldline SA\\Desktop\\Event Tool\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj": {
+    "C:\\Users\\w199635\\OneDrive - Worldline SA\\Desktop\\Event Tool\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\w199635\\OneDrive - Worldline SA\\Desktop\\Event Tool\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj",
         "projectName": "EventTracker.Auth.Domain",
-        "projectPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj",
-        "packagesPath": "C:\\Users\\w199615\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\w199615\\OneDrive - Worldline SA\\Projects\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\obj\\",
+        "projectPath": "C:\\Users\\w199635\\OneDrive - Worldline SA\\Desktop\\Event Tool\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\EventTracker.Auth.Domain.csproj",
+        "packagesPath": "C:\\Users\\w199635\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\w199635\\OneDrive - Worldline SA\\Desktop\\Event Tool\\event-tracking-tool\\src\\Services\\EventTracker.Auth\\EventTracker.Auth.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\w199615\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\w199635\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Users\\w199615\\OneDrive - Worldline SA\\Documents\\UiPath\\UiPath Librarys": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

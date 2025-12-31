@@ -1,5 +1,4 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5085/api/auth';
-
+const API_BASE_URL = process.env.REACT_APP_AUTH_API_URL || 'http://localhost:5085/api/auth';
 interface LoginResponse {
   userId: string;
   email: string;
